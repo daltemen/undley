@@ -1,0 +1,202 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es" ng-app="ebrios">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Licor a domicilio en bogotá - Ebrios.co</title>
+    <meta name="description" content="Licor a domicilio en Bogotá 24 horas, NO DEJES QUE LA FIESTA TERMINE haz tu domicilio y obtén un 10% de descuento">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F60">
+    <link rel="icon" type="image/png" href="https://ebriostatic.s3.amazonaws.com/media/producto/favicon100.png">
+    <!-- Entrada de CSS-->
+    <link rel="stylesheet" type='text/css' href="{% static 'css/estilos_desktop.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/slick.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libs/jquery.toastmessage.css' %}">
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all'>
+    <!--SCRIPTS-->
+    <script src="{% static 'js/libs/jquery.min.js' %}"></script>
+    <script src="{% static 'js/libs/angular.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular-route.min.js' %}"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+    <script src="{% static 'js/libs/slick.js' %}"></script>
+    <script src="{% static 'js/libs/angular-slick.js' %}"></script>
+    <script src="{% static 'js/app_desktop.js' %}"></script>
+    <script src="{% static 'js/controllers_desktop.js' %}"></script>
+    <script src="{% static 'js/services_desktop.js' %}"></script>
+    <script src="{% static 'js/directives_desktop.js' %}"></script>
+    <script src="{% static 'js/libs/jquery.toastmessage.js' %}"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-77424835-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+</head>
+{% verbatim %}
+<body>
+    
+    <div class="bodyport">
+        <div id="tablelogin" ng-controller="RegistroController">
+            <div id="registro">          
+                <form name="formularioRegistro">   
+                    <table>
+                        <tr>
+                            <td align="center"><img class="imgregistro" src="https://ebriostatic.s3.amazonaws.com/media/producto/logologin.png"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="titulologin"><h1><font>------------------</font>&nbsp;&nbsp;REGISTRATE &nbsp;&nbsp;<font>------------------</font></h1></td>
+                        </tr> 
+                        
+                        <!--<tr>
+                           {% endverbatim %}  
+                            <td colspan="2" align="center">
+                                <a href="{% url 'social:begin' 'facebook' %}">
+                                    <img class="ingredesregistro" src="https://ebriostatic.s3.amazonaws.com/media/producto/registrofacebook.jpg">
+                                </a>
+                            </td>
+                            {% verbatim %}  
+                        </tr>--> 
+                        
+                        <tr>
+                            <td>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="loginfields" name="nombre" ng-model="usuario.nombre" ng-pattern="/^[a-zA-Z'á''é''í''ó''ú'' ']+$/" placeholder="NOMBRES" autocomplete="off" required>                      
+                                        </td>
+
+                                        <td>
+                                            <input type="text" class="loginfields" name="apellido" ng-model="usuario.apellido" ng-pattern="/^[a-zA-Z'á''é''í''ó''ú'' ']+$/" placeholder="APELLIDOS" autocomplete="off" required>                                  
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <table width="100%">
+                                    <tr>
+                                        <td width="50%">                                    
+                                            <span class="aviso_obligatorio" ng-show="!formularioRegistro.nombre.$pristine && formularioRegistro.nombre.$error.required">Este campo es requerido</span>
+                                            <span class="aviso_obligatorio" ng-show="formularioRegistro.nombre.$error.pattern">Este campo solo admite letras</span>
+                                        </td>
+
+                                        <td width="50%">                                   
+                                            <span class="aviso_obligatorio" ng-show="!formularioRegistro.apellido.$pristine && formularioRegistro.apellido.$error.required">Este campo es requerido</span>
+                                            <span class="aviso_obligatorio" ng-show="formularioRegistro.apellido.$error.pattern">Este campo solo admite letras</span>
+                                        </td>
+                                    </tr>
+                                </table>                        
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <input type="email" class="loginfields" name="correo" ng-model="usuario.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2}/" placeholder="CORREO ELECTRÓNICO" autocomplete="off" required>
+                                <span class="aviso_obligatorio" ng-show="!formularioRegistro.correo.$pristine && formularioRegistro.correo.$error.required">Este campo es requerido</span>
+                                <span class="aviso_obligatorio" ng-show="formularioRegistro.correo.$error.pattern">Correo no valido</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <input type="password" class="loginfields"  ng-model="usuario.password" name="password" ng-minlength="6" placeholder="CONTRASEÑA" ng-change="validarIgualdadContrasenas()" required>                                         
+                                        </td>
+                                        <td>
+                                            <input type="password" class="loginfields" ng-model="confirmar_contrasena" name="verify" placeholder="CONFIRMAR CONTRASEÑA" ng-change="validarIgualdadContrasenas()" required>                                
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="50%">                                        
+                                             <span class="aviso_obligatorio" ng-show="!formularioRegistro.password.$pristine && formularioRegistro.password.$error.required">El campo es requerido</span>
+                                             <span class="aviso_obligatorio" ng-show="formularioRegistro.password.$error.minlength">Debe contener por lo menos 6 caracteres</span>
+                                        </td>
+                                        <td width="50%">                                        
+                                            <span class="aviso_obligatorio" ng-show="!formularioRegistro.verify.$pristine && formularioRegistro.verify.$error.required">El campo es requerido</span>
+                                            <span class="aviso_obligatorio" ng-show="!formularioRegistro.verify.$pristine && !validacion_contrasenas">Las Contraseñas no coinciden</span>  
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>      
+
+
+                        
+
+                        <!--<tr>
+                            <td>
+                                <input type="text" class="loginfields" name="telefono" ng-model="cliente.telefono" ng-minlength="7" ng-pattern="/^[0-9]+$/" placeholder="TELÉFONO" autocomplete="off" required>
+                                <span class="aviso_obligatorio" ng-show="!formularioRegistro.telefono.$pristine && formularioRegistro.telefono.$error.required">El campo es requerido</span>
+                                <span class="aviso_obligatorio" ng-show="formularioRegistro.telefono.$error.pattern">Este campo solo admite números</span>
+                                <span class="aviso_obligatorio" ng-show="formularioRegistro.telefono.$error.minlength">Debe contener por lo menos 7 dígitos</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center" >
+                               <input type="radio" name="sexo" value="M" ng-model="cliente.sexo" required>HOMBRE
+                               <input type="radio" name="sexo"  value="F" ng-model="cliente.sexo" >MUJER                           
+                            </td>
+                        </tr>-->
+
+                        <tr>
+                            <td colspan="2" align="center">
+                                <table align="center">
+                                    <tr>
+                                        <td style="font-size:10px">FECHA DE NACIMIENTO</td>
+                                        <td>
+                                            <select name="dia" ng-model="fecha_registro.dia" class="registrodirfieldsselect fecha"  ng-options="opcion for opcion in dias" ng-click="calcularAnos()" required>
+                                                <option value="">-DIA-</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="mes" ng-model="fecha_registro.mes" class="registrodirfieldsselect fecha"  ng-options="opcion for opcion in meses" ng-click="calcularAnos()" requires>
+                                                <option value="">-MES-</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="ano" ng-model="fecha_registro.ano" class="registrodirfieldsselect fecha" ng-options="opcion for opcion in anos" ng-click="calcularAnos()" required>
+                                                <option value="">-AÑO-</option>
+                                            </select>                                      
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center" class="regreg">
+                                 <span>Al registrarte estas de acuerdo con las <a class="condiciones" target="_newtab" href="/terminosycondiciones">condiciones del servicio</a></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" align="center">
+                                <button type="button" class="botonregistro" ng-disabled="!formularioRegistro.$valid || !validacion_contrasenas" ng-click="registrar()">REGISTRAR</button>
+                            </td>
+                        </tr>                   
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="firma">PROHIBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD, LEY 124 DE 1994. EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA SALUD, LEY 30 DE 1986 </div>
+    
+</body>
+{% endverbatim %}  
+</html>

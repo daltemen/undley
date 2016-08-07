@@ -1,0 +1,583 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es" ng-app="licorera">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Licor a domicilio en bogotá - Ebrios.co</title>
+    <meta name="description" content="Licor a domicilio en Bogotá 24 horas, NO DEJES QUE LA FIESTA TERMINE haz tu domicilio y obtén un 10% de descuento">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F60">
+    <link rel="icon" type="image/png" href="https://ebriostatic.s3.amazonaws.com/media/producto/favicon100.png">
+    <!-- Entrada de CSS-->
+    <link rel="stylesheet" href="{% static 'css/estilos_licorera.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libs/jquery.toastmessage.css' %}">
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all'>
+    <!--Angular y archivos js-->
+    <script src="{% static 'js/libs/angular.min.js' %}"></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+    <script src="{% static 'js/app_licorera.js' %}"></script>
+    <script src="{% static 'js/controllers_licorera.js' %}"></script>
+    <script src="{% static 'js/libs/jquery.min.js' %}"></script>
+    <script src="{% static 'js/libs/jquery.toastmessage.js' %}"></script>
+    <script src="{% static 'js/libs/angular.audio.js' %}"></script>
+    {% load drealtimetags %}
+    {% ishout_js %} 
+</head>
+
+{% verbatim %}
+
+<body ng-controller="InterfazLicoreraController">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=1826828040877998";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<div ng-controller="NavController">
+    <!--menu principal-->
+    <div id="contmenu">
+        <div id="logo" ng-click="selectNav(0)">
+            <img src="https://ebriostatic.s3.amazonaws.com/media/producto/logo.png">
+        </div>
+        <div id="cajamenu">
+            <div id="menu">
+                <ul>
+                    <li> <a href="" ng-click="selectNav(1);obtenerOrdenes()">ORDENES</a></li>
+                    <li> <a href="" ng-click="selectNav(2);obtenerDatosHistorial()">HISTORIAL</a></li>
+                    <li> <a href="" ng-click="selectNav(3);obtenerDatosCatalogo()">MI CATÁLOGO</a></li>
+                    <li> <a href="" ng-click="selectNav(4);obtenerDatosAnadirProducto()">AÑADIR PRODUCTO</a></li>
+                </ul>
+                <img src="https://ebriostatic.s3.amazonaws.com/media/producto/lineas.png">
+                <ul>
+                    <li> <a href="" ng-click="selectNav(5);obtenerZonas()">ADMINISTRAR ZONAS</a></li>
+                    <li> <a href="" ng-click="cambiarEstadoZonasCerrar()">CERRAR SESIÓN</a></li>
+                    <li> <a href="">CONTACTO</a></li>
+                </ul>
+                <img src="https://ebriostatic.s3.amazonaws.com/media/producto/lineas.png">
+                <div id="redes">
+                    <div class="fb-like" data-href="https://www.facebook.com/licoradomicilioenbogota24horas/" data-width="300" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/menu principal-->
+    <div id="mainlicorera">
+        <!--interfaz principal-->
+        <div id="contlicorera" ng-show="nav === 0">
+            <br/>
+            <br/>
+            <H1><font>------------------</font>&nbsp;&nbsp;{{licorera_registrada[0].razon_social | uppercase}}&nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="botoneslicorera">
+                <div id="botonlicorera1" ng-click="selectNav(1);obtenerOrdenes()"> </div>
+                <div id="botonlicorera2" ng-click="selectNav(2);obtenerDatosHistorial()"> </div>
+                <div id="botonlicorera3" ng-click="selectNav(3);obtenerDatosCatalogo()"> </div>
+                <div id="botonlicorera4" ng-click="selectNav(4);obtenerDatosAnadirProducto()"> </div>
+            </div>
+        </div>
+        <!--/interfaz principal-->
+        <!--seccion de ordenes-->
+        <div id="contlicorera" ng-show="nav === 1">
+            <H1><font>------------------</font>&nbsp;&nbsp;ORDENES DE PEDIDO&nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="contordenes">
+                <div id="encabezadocajaordenes">
+                    Tienes {{ordenes.length-ordenes_enviadas.length}} orden(es) pendientes
+                </div>
+                <div id="espacioordenes">
+                    <div id="aviso" ng-show="ordenes.length-ordenes_enviadas.length === 0">
+                        <p>NO TIENES ORDENES PENDIENTES</p>
+                    </div>
+                    <div id="orden" ng-repeat="orden in ordenes | orderBy:'id'" ng-show="orden.estado === false">
+                        <div id="ordenencabezado">ORDEN #{{orden.id}}</div>
+                        <div id="ordentitulo1">PRODUCTOS: {{orden.fechallegada}} / {{orden.horallegada}}</div>
+
+                        <div id="ordencajaproductos">
+                            <table>
+                                <tr>
+                                    <td class="bordepunteado">REF</td>
+                                    <td class="bordepunteado">Producto</td>
+                                    <td class="bordepunteado">Unid</td>
+                                    <td class="bordepunteado">Tam</td>
+                                    <td class="bordepunteado">Importe</td>
+                                    <td class="bordepunteado">Total</td>
+                                    <td class="bordepunteado"></td>
+                                </tr>
+                                <tr ng-repeat="producto in orden.pedido">
+                                    <td class="dest bordepunteado">{{producto.referencia}}</td>
+                                    <td class="descprod bordepunteado">{{producto.subcategoria}} {{producto.marca}}</td>
+                                    <td class="descprod bordepunteado">{{producto.cantidad}}</td>
+                                    <td class="descprod bordepunteado">{{producto.tamano}}</td>
+                                    <td class="dest bordepunteado">${{producto.precio}}</td>
+                                    <td class="dest bordepunteado">${{producto.precio*producto.cantidad}}</td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="ordendatos">
+                            <table>
+                                <tr>
+                                    <td class="bordepunteado"> SUB-TOTAL / DCTO / TOTAL:</td>
+                                    <td align="right" class="bordepunteadodest">${{orden.subtotal | number:0}} / {{orden.descuento | number:0}}% / ${{orden.total_compra | number:0}} inc. envío</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado"> Contacto:</td>
+                                    <td align="right" class="bordepunteadodest">{{orden.cliente.usuariocliente.nombre}} {{orden.cliente.usuariocliente.apellido}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Dirección:</td>
+                                    <td align="right" class="bordepunteadodest">{{orden.direccion_cliente}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Teléfono:</td>
+                                    <td align="right" class="bordepunteadodest">{{orden.telefono_cliente}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Medio de pago:</td>
+                                    <td align="right" class="bordepunteadodest">{{orden.observacion | uppercase}}</td>
+                                </tr>
+                            </table>
+                        </div> 
+                        <div id="ordenconfirmacion">
+                            <input type="button" class="botonconf" value="DESPACHADO" ng-click="cambiarEstadoOrden(orden.id);obtenerOrdenes()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/seccion de ordenes-->
+        <!--seccion de historial-->
+        <div id="contlicorera" ng-show="nav === 2" ng-controller="HistorialController">
+            <H1><font>------------------</font>&nbsp;&nbsp;HISTORIAL DE ORDENES &nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="contordenes">
+                <div id="encabezadocajaordenes">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Mostrando {{(ordenes_enviadas|filter:filtro).length}} de {{ordenes_enviadas.length}} Ordenes
+                            </td>
+                            <td align="right" style="padding-right:10px;padding-top:-10px;"> Filtrar por:
+                            <select name="Lista" class="fieldssearch" ng-model="opcion_filtrado_seleccionada" ng-options="opcion.nombre for opcion in opciones_filtrado"></select>
+                            <input type="text" class="fieldssearch texto" ng-model="filtro.id" placeholder="número de orden" ng-show="opcion_filtrado_seleccionada.id === 1">
+                            <input type="text" class="fieldssearch texto" ng-model="filtro.fechallegada" placeholder="fecha de llegada" ng-show="opcion_filtrado_seleccionada.id === 2">
+                            <input type="text" class="fieldssearch texto" ng-model="filtro.fechaenvio" placeholder="fecha de envio" ng-show="opcion_filtrado_seleccionada.id === 3">
+                            <input type="text" class="fieldssearch texto" ng-model="filtro.total_compra" placeholder="precio" ng-show="opcion_filtrado_seleccionada.id === 4">
+                            <input type="text" class="fieldssearch texto" ng-model="filtro.cliente.usuariocliente.nombre" placeholder="nombre del cliente" ng-show="opcion_filtrado_seleccionada.id === 5">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="espacioordenes">
+                    <div id="aviso" ng-show="ordenes_enviadas.length === 0">
+                        <p>NO TIENES ORDENES EN TU HISTORIAL</p>
+                    </div>
+                    <div id="aviso" ng-show="(ordenes_enviadas|filter:filtro).length === 0">
+                        <p>NO SE HA ENCONTRADO NINGUNA ORDEN EN TU HISTORIAL</p>
+                    </div>
+                    <div id="ordenhistorica" ng-repeat="orden in ordenes_enviadas | filter:filtro | orderBy:'-id'">
+                        <div id="ordenhistoricaencabezado"> ORDEN #{{orden.id}}</div>
+                        <div id="ordenhistoricadatos">
+                            <table>
+                                <tr>
+                                    <td class="bordepunteado"> Contacto:</td>
+                                    <td align="right" class="bordepunteadodest">{{orden.cliente.usuariocliente.nombre}} {{orden.cliente.usuariocliente.apellido}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Valor del pedido</td>
+                                    <td align="right" class="bordepunteadodest">${{orden.total_compra | number:0}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Fecha y hora:</td>
+                                    <td align="right" class="bordepunteadodest">{{orden.fechallegada}} / {{orden.horallegada}}</td>
+                                </tr>
+                            </table>
+                            <div id="botverorden">
+                                <input type="button" class="botonconf" value="VER ORDEN" ng-click="obtenerDatosOrdenHistorial(orden);abrirCerrarModalHistorial(true)">
+                                <input type="button" class="botonconf reportar" value="REPORTAR" ng-click="obtenerDatosOrdenHistorial(orden);obtenerDescripcionReporte(orden);abrirCerrarModalReportar(true)">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="popuporden" class="modalmask" ng-class="{abrir:valor_modal_historial === true}">
+                        <div class="modalbox movedown">
+                            <div id="ordenpop">
+                                <div id="ordenencabezadopop">ORDEN # {{orden_historial.id}}</div>
+                                <div id="ordentitulopop">PRODUCTOS: {{orden_historial.fechallegada}} / {{orden_historial.horallegada}}</div>
+                                <div id="ordencajaproductospop">
+                                    <table>
+                                        <tr>
+                                            <td class="bordepunteado">REF</td>
+                                            <td class="bordepunteado">Producto</td>
+                                            <td class="bordepunteado">Unid</td>
+                                            <td class="bordepunteado">Tam</td>
+                                            <td class="bordepunteado">Importe</td>
+                                            <td class="bordepunteado">Total</td>
+                                            <td class="bordepunteado"></td>
+                                        </tr>
+                                        <tr ng-repeat="producto in orden_historial.pedido">
+                                            <td class="dest bordepunteado">{{producto.referencia}}</td>
+                                            <td class="descprod bordepunteado">{{producto.subcategoria}} {{producto.marca}}</td>
+                                            <td class="descprod bordepunteado">{{producto.cantidad}}</td>
+                                            <td class="descprod bordepunteado">{{producto.tamano}}</td>
+                                            <td class="dest bordepunteado">${{producto.precio}}</td>
+                                            <td class="dest bordepunteado">${{producto.precio*producto.cantidad}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="ordendatospop">
+                                    <table>
+                                        <tr>
+                                            <td class="bordepunteado"> SUB-TOTAL / DCTO / TOTAL:</td>
+                                            <td align="right" class="bordepunteadodest">${{orden_historial.subtotal | number:0}} / {{orden_historial.descuento | number:0}}% / ${{orden_historial.total_compra | number:0}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bordepunteado"> Contacto:</td>
+                                            <td align="right" class="bordepunteadodest">{{orden_historial.cliente.usuariocliente.nombre}} {{orden_historial.cliente.usuariocliente.apellido}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bordepunteado">Dirección:</td>
+                                            <td align="right" class="bordepunteadodest">{{orden_historial.direccion_cliente}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bordepunteado">Teléfono:</td>
+                                            <td align="right" class="bordepunteadodest">{{orden_historial.telefono_cliente}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bordepunteado">Fecha y hora de envío:</td>
+                                            <td align="right" class="bordepunteadodest">{{orden_historial.fechaenvio}} / {{orden_historial.horaenvio}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bordepunteado">Medio de pago:</td>
+                                            <td align="right" class="bordepunteadodest">{{orden_historial.observacion | uppercase}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="ordenvolverpop">
+                                    <input type="button" class="botonconf" value="VOLVER" ng-click="abrirCerrarModalHistorial(false)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    <div id="popupreporte" class="modalmask" ng-class="{abrir:valor_modal_reportar === true}">
+                        <div class="modalbox movedown">
+                           <div id="reportepop">
+                                <div id="ordenencabezado">REPORTAR ORDEN #{{orden_historial.id}}</div>
+                                <div id="ordentitulopopreporte">DESCRIPCIÓN: {{reporte.fecha}}/{{reporte.hora}}</div>
+                                    <textarea id="ordencajaproductosreportar" ng-model="reporte.descripcion" ng-disabled="orden_historial.rechazado != null" name="descripcion" maxlength="250" cols="53" rows="5" placeholder="Escriba el motivo del reporte..."></textarea>
+                                <div id="reportevolver">
+                                    <input type="button" class="botonconf" value="REPORTAR" ng-click="generarReporte();reiniciarDescripcionReporte();abrirCerrarModalReportar(false)" ng-disabled="orden_historial.rechazado != null || reporte.descripcion === ''">
+                                    <input type="button" class="botonconf" value="CANCELAR" ng-click="reiniciarDescripcionReporte();abrirCerrarModalReportar(false)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!--/seccion de historial-->
+        <!--seccion de catalogo-->
+        <div id="contlicorera" ng-show="nav === 3" ng-controller="ProductosController">
+            <H1 align="center"><font color="#FF6600">------------------</font>&nbsp;&nbsp;CATÁLOGO DE PRODUCTOS &nbsp;&nbsp;<font color="#FF6600">------------------</font></H1>
+            <div id="contordenes">
+                <div id="encabezadocajaordenes">
+                    <table>
+                        <tr>
+                            <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Mostrando {{(productos|filter:opciones_filtrado_producto.categoria.nombre| filter:opciones_filtrado_producto.subcategoria.nombre | filter:opciones_filtrado_producto.marca.nombre).length}} de {{productos.length}} Productos
+                            </td>
+                            <td class="filtro_catalogo"> Filtrar por:
+                                <select name="categoria" ng-model="opciones_filtrado_producto.categoria" ng-change="opciones_filtrado_producto.marca = null" class="fieldssearch searchcatalogo"  ng-options="opcion as opcion.nombre | uppercase for opcion in categorias  | orderBy:'nombre'">
+                                    <option value="">--CATEGORIA--</option>
+                                </select>
+                                <select name="subcategoria" ng-model="opciones_filtrado_producto.subcategoria" class="fieldssearch searchcatalogo"  ng-options="opcion as opcion.nombre | uppercase for opcion in subcategorias | filter:{categoria: opciones_filtrado_producto.categoria.id}:true  | orderBy:'nombre'">
+                                    <option value="">--SUBCATEGORIA--</option>
+                                </select>
+                                <select name="marca" ng-model="opciones_filtrado_producto.marca" class="fieldssearch searchcatalogo"  ng-options="opcion as opcion.nombre | uppercase for opcion in marcas | filter:{subcategoria: opciones_filtrado_producto.subcategoria.id}:true  | orderBy:'nombre'">
+                                    <option value="">--MARCA--</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="espacioordenes">
+                    <div id="aviso" ng-show="productos.length === 0">
+                        <p>NO TIENES PRODUCTOS EN TU CATÁLOGO</p>
+                        <input type="button" class="botonguardar" value="AÑADIR PRODUCTO" ng-click="selectNav(4)">
+                    </div>
+                    <div id="aviso" ng-show="(productos|filter:opciones_filtrado_producto.categoria.nombre| filter:opciones_filtrado_producto.subcategoria.nombre | filter:opciones_filtrado_producto.marca.nombre).length === 0">
+                        <p>NO TIENES ESTE TIPO DE PRODUCTO EN TU CATÁLOGO</p>
+                        <input type="button" class="botonguardar" value="AÑADIR PRODUCTO" ng-click="selectNav(4)">
+                    </div>
+                    <div id="fichaproducto" ng-repeat="producto in productos | filter:opciones_filtrado_producto.categoria.nombre | filter:opciones_filtrado_producto.subcategoria.nombre | filter:opciones_filtrado_producto.marca.nombre | orderBy:'subcategoria.nombre'">
+                        <div id="subcategoria" ng-class="{nodisponible:producto.disponible === false}">{{producto.subcategoria.nombre | uppercase}}</div>
+                        <div id="fotoproducto">
+                            <img ng-src="{{producto.imagen == '' && 'https://ebriostatic.s3.amazonaws.com/media/producto/vpimg.png' || producto.imagen}}">
+                        </div>
+                        <div id="datosproducto"> 
+                            <table>
+                                <tr>
+                                    <td class="bordepunteado">Referencia</td>
+                                    <td align="right" class="bordepunteadodest">{{producto.referencia}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Marca</td>
+                                    <td align="right" class="bordepunteadodest">{{producto.marca.nombre}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Tamaño</td>
+                                    <td align="right" class="bordepunteadodest">{{producto.tamano.nombre}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Precio</td>
+                                    <td align="right" class="bordepunteadodest">$ {{producto.precio}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bordepunteado">Disponibilidad</td>
+                                    <td align="right" class="bordepunteadodest color-verde" ng-show="producto.disponible === true">Disponible</td>
+                                    <td align="right" class="bordepunteadodest color-rojo" ng-show="producto.disponible === false">No Disponible</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="botonesdeproducto">
+                            <input type="button" class="botonmodificar" value="MODIFICAR" ng-click="obtenerDatosProductoModificar(producto);vistaPreviaImagen();abrirCerrarModalModificar(true)" ng-disabled="producto.disponible === false">
+                            <input type="button" class="botondisponible activado"  ng-show="producto.disponible === false" value="CAMBIAR A DISPONIBLE" ng-click="cambiarEstadoProducto(producto.id,producto.disponible)">
+                            <input type="button" class="botondisponible desactivado"  ng-show="producto.disponible === true" value="CAMBIAR A NO DISPONIBLE" ng-click="cambiarEstadoProducto(producto.id,producto.disponible)">
+                        </div>
+                    </div>
+                    
+                    <div id="popupmodificarproducto" class="modalmask" ng-class="{abrir:valor_modal_modificar === true}">
+                        <div class="modalbox2 movedown">
+                            <form name="modificarProductoForm">
+                                <div id="ingresoproducto">
+                                    <table>
+                                        <tr>
+                                            <td class="letraanadir" align="right" width="200px" style="padding-right:10px;" > REFERENCIA</td>
+                                            <td >
+                                                <input name="referencia" class="productfields" ng-value="producto_modificar.referencia" ng-model="producto_nuevo.referencia">
+                                            </td>
+                                            <td rowspan="6" width="150px" >
+                                                <table width="100%" style="margin:15px;">
+                                                    <tr>
+                                                        <td> 
+                                                            <img ng-src="{{vista_previa.validacion === false && 'https://ebriostatic.s3.amazonaws.com/media/producto/vpimg.png' || vista_previa.url}}">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="dest" align="center"> VISTA PREVIA PRODUCTO</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="letraanadir" align="right" style="padding-right:10px;">CATEGORÍA:</td>
+                                            <td>
+                                                <select name="categoria" ng-model="producto_nuevo.categoria" class="productfieldsselect"  ng-options="opcion as opcion.nombre | uppercase for opcion in categorias" required>
+                                                    <option value="">--ELIJA UNA CATEGORIA--</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="letraanadir" align="right" style="padding-right:10px;">SUBCATEGORÍA:</td>
+                                            <td>
+                                                <select name="subcategoria" ng-model="producto_nuevo.subcategoria" class="productfieldsselect" ng-options="opcion as opcion.nombre | uppercase for opcion in subcategorias | filter:{categoria:producto_nuevo.categoria.id}" required>
+                                                    <option value="">--ELIJA UNA SUBCATEGORIA--</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="letraanadir" align="right" style="padding-right:10px;">MARCA:</td>
+                                            <td>       
+                                                <select name="marca" ng-model="producto_nuevo.marca" class="productfieldsselect" ng-change="obtenerTamanosDisponibles();reiniciarValorTamanoDisponible()" ng-options="opcion as opcion.nombre | uppercase for opcion in marcas | filter:{subcategoria:producto_nuevo.subcategoria.id}" required>
+                                                    <option value="">--ELIJA UNA MARCA--</option>
+                                                </select>   
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="letraanadir" align="right" width="200px" style="padding-right:10px;" > TAMAÑO:</td>
+                                            <td>
+                                                <select name="tamano" ng-model="producto_nuevo.tamano" ng-change="vistaPreviaImagen()" class="productfieldsselect"  ng-options="opcion as opcion.nombre | uppercase for opcion in tamanos_disponibles" required>
+                                                    <option value="">--ELIJA UN TAMAÑO--</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="letraanadir" align="right" style="padding-right:10px;">PRECIO:</td>
+                                            <td>
+                                                <input name="precio" autocomplete="off" type="text" class="productfields" ng-value="producto_modificar.precio" ng-model="producto_nuevo.precio" ng-pattern="/^[1-9]{1}[0-9]+$/" required>
+                                                <span ng-show="modificarProductoForm.precio.$error.pattern" class="aviso_obligatorio">El campo debe ser númerico y entero</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="center">
+                                                <br />
+                                                <br />
+                                                <input type="button" class="botonguardar" value="GUARDAR" ng-disabled="!modificarProductoForm.$valid" ng-click="validarIgualdadProductos();reestablecerFormularioAgregarProducto();reiniciarTamanosDisponibles();abrirCerrarModalModificar(false)">
+                                                <input type="button" class="botonguardar" value="SALIR" ng-click="reestablecerFormularioAgregarProducto();reiniciarTamanosDisponibles();abrirCerrarModalModificar(false)">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!--/seccion de catalogo-->
+        <!--seccion de anadir producto-->
+        <div id="contlicorera" ng-show="nav === 4">
+            <H1><font>------------------</font>&nbsp;&nbsp;AÑADIR PRODUCTO &nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="ingresoproducto">
+                <form name="agregarProductoForm" role="form">
+                    <table class="contenedoringreso">
+                        <tr>
+                            <td class="letraanadir" align="right" width="200px" style="padding-right:10px;" > REFERENCIA</td>
+                            <td >
+                                <input name="referencia" type="text" class="productfields" ng-model="producto_nuevo.referencia" placeholder="DIGITA LA REFERENCIA">
+                            </td>
+                            <td rowspan="7" width="150px" >
+                                <table width="100%" style="margin:10px;">
+                                    <tr>
+                                        <td>
+                                            <img ng-src="{{vista_previa.validacion === false && 'https://ebriostatic.s3.amazonaws.com/media/producto/vpimg.png' || vista_previa.url}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="dest" align="center">VISTA PREVIA PRODUCTO</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="letraanadir" align="right" style="padding-right:10px;">CATEGORÍA*:</td>
+                            <td>
+                                <select name="categoria" ng-model="producto_nuevo.categoria" ng-change="reiniciarValorMarca()" class="productfieldsselect"  ng-options="opcion as opcion.nombre | uppercase for opcion in categorias" required>
+                                    <option value="">--ELIJA UNA CATEGORIA--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="letraanadir" align="right" style="padding-right:10px;">SUBCATEGORÍA*:</td>
+                            <td>
+                                <select name="subcategoria" ng-model="producto_nuevo.subcategoria" ng-change="reiniciarValorMarca()" class="productfieldsselect" ng-options="opcion as opcion.nombre | uppercase for opcion in subcategorias | filter:{categoria:producto_nuevo.categoria.id}:true | orderBy:'nombre'" required>
+                                    <option value="">--ELIJA UNA SUBCATEGORIA--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="letraanadir" align="right" style="padding-right:10px;">MARCA*:</td>
+                            <td>
+                                <select name="marca" ng-change="obtenerTamanosDisponibles();reiniciarValorTamanoDisponible()" ng-model="producto_nuevo.marca" class="productfieldsselect" ng-options="opcion as opcion.nombre | uppercase for opcion in marcas | filter:{subcategoria:producto_nuevo.subcategoria.id}:true  | orderBy:'nombre'" required>
+                                    <option value="">--ELIJA UNA MARCA--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="letraanadir" align="right" width="200px" style="padding-right:10px;">TAMAÑO*:</td>
+                            <td>
+                                <select name="tamano" ng-model="producto_nuevo.tamano" ng-change="vistaPreviaImagen()" class="productfieldsselect"  ng-options="opcion as opcion.nombre | uppercase for opcion in tamanos_disponibles  | orderBy:'nombre'" required>
+                                    <option value="">--ELIJA UN TAMAÑO--</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="letraanadir" align="right" style="padding-right:10px;">PRECIO*:</td>
+                            <td>
+                                <input name="precio" autocomplete="off" type="text" class="productfields" placeholder="DIGITE EL PRECIO" ng-model="producto_nuevo.precio" ng-pattern="/^[1-9]{1}[0-9]+$/" required>
+                                <span ng-show="agregarProductoForm.precio.$error.pattern" class="aviso_obligatorio">Precio no valido</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="aviso_obligatorio">
+                                <span>(*) CAMPOS OBLIGATORIOS</span>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="center">
+                                <br />
+                                <br />
+                                <input type="button" class="botonguardar" value="GUARDAR PRODUCTO" ng-click="agregarProducto();reestablecerFormularioAgregarProducto();reiniciarTamanosDisponibles();selectNav(3)" ng-disabled="!agregarProductoForm.$valid">
+                                <input type="button" class="botonguardar" value="SALIR" ng-click="reestablecerFormularioAgregarProducto();reiniciarTamanosDisponibles();selectNav(3);obtenerDatosCatalogo()">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--/seccion de anadir producto-->
+        <!--seccion de administrar zonas-->
+        <div id="contlicorera" ng-show="nav === 5">
+            <H1><font>------------------</font>&nbsp;&nbsp;ADMINISTRACIÓN ZONAS&nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="contordenes">
+                <div id="encabezadocajaordenes">
+                &nbsp;&nbsp;&nbsp;&nbsp;Tienes {{zonas.length}} zonas registradas
+                </div>
+                <div id="espaciozonas">
+                    <table>
+                        <tr class="encabezadozonas">
+                            <td> ESTADO</td>
+                            <td class="desczona"> ZONA</td>
+                            <td> CAMBIAR ESTADO</td>
+                        </tr>
+                        <tr class="filazonas" ng-repeat="zona in zonas">
+                            <td width="20%" align="center" class="color-verde" ng-show="zona.disponible === true" >DISPONIBLE</td>
+                            <td width="20%" align="center" class="color-rojo" ng-show="zona.disponible === false" >NO DISPONIBLE</td>
+                            <td>
+                               <table width="100%">
+                                   <tr>
+                                       <td width="40%" align="right">ENTRE CALLES: {{zona.callemenor}} Y {{zona.callemayor}}</td>
+                                       <td width="10%">
+                                           <div ng-show="zona.essur === true" align="center">
+                                               SUR
+                                           </div>
+                                       </td>
+                                       <td width="40%" align="right">ENTRE CARRERAS: {{zona.carreramenor}} Y {{zona.carreramayor}}</td>
+                                       <td width="10%">
+                                           <div ng-show="zona.eseste === true" align="center">
+                                               ESTE
+                                           </div>
+                                       </td>
+                                   </tr>
+                               </table>
+                            </td>
+                            <td ng-show="$first && zona.disponible === true" width="20%" align="center"> 
+                                <input type="button" class="botondisponible desactivado" value="DESACTIVAR ZONA(S)" ng-click="cambiarEstadoZonas()"> 
+                            </td>
+                            <td ng-show="$first && zona.disponible === false" width="20%" align="center"> 
+                                <input type="button" class="botondisponible activado" value="ACTIVAR ZONA(S)" ng-click="cambiarEstadoZonas()"> 
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/seccion de administrar zonas-->
+        
+        
+    </div>
+    <div id="firma">TODOS LOS DERECHOS RESERVADOS - EBRIOS.CO - 2016 </div>
+    
+    <div id="loguser">
+        <table>
+            <tr>
+                <td class="loguser">Hola, {{licorera_registrada[0].razon_social}}</td>
+                <td style="vertical-align:middle;">
+                    <a href="" ng-click="cambiarEstadoZonasCerrar()">
+                       <input class="botonsalir" type="button" >
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+
+</body>
+
+{% endverbatim %}
+
+</html>

@@ -1,0 +1,79 @@
+<div ng-controller="CarritoController"> 
+
+    <div id="mainproductocheckin">
+        <div id="botonvolvercarrito">
+            <input type="button" value="<-- VOLVER AL MENU PRINCIPAL" class="botonvolvercarrito" ng-click="go('/')">
+        </div>      
+        <div id="contproductocheckin">
+            <H1><font>------------------</font>&nbsp;&nbsp;REALIZA TU PEDIDO EN 2 PASOS &nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="titulocheckproductos">
+                <table>
+                    <tr>
+                    <td width="30%" style="vertical-align:middle" class="dest">1. VERIFICA TU PEDIDO</td>
+                    <td width="20%" align="center" style="vertical-align:middle">TAMAÑO</td>
+                    <td width="15%" align="center" style="vertical-align:middle">CANTIDAD</td>
+                    <td width="10%" align="center" style="vertical-align:middle">IMPORTE</td>
+                    <td width="15%" align="center" style="vertical-align:middle">TOTAL</td>
+                    <td width="10%" align="center" style="vertical-align:middle; color:#666"></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="contproductos">
+                <div id="listaproductos">  
+                    <div class="carrovacio" ng-show="productos_pedido.length===0">TU CARRITO ESTA VACIO VE A COMPRAR!</div>      
+                    <table id="productolista">
+                        <tr ng-repeat="producto in productos_pedido" ng-style="borderTabla($last)"> 
+                            <td width="10%" align="center" style="vertical-align:middle"><img ng-src="{{producto[0].imagen}}"></td>
+                            <td width="20%" style="vertical-align:middle">{{producto[0].subcategoria|uppercase}} {{producto[0].marca|uppercase}}</td> 
+                            <td width="20%" align="center" style="vertical-align:middle">{{producto[0].tamano}}</td>                          
+                            <td width="15%" align="center" style="vertical-align:middle" class="titulosubproducto">
+                                <table>
+                                    <tr>
+                                        <td style="middle">
+                                            <input type="button" class="menos" ng-click="restarCantidadProducto($index);calcularTotalCompra();calcularNumeroProductos()" ng-disabled="producto[1] <= 1">&nbsp;
+                                        </td>
+                                        <td style="middle">
+                                            <input class="cascant" type="number" ng-value="producto[1]" disabled>&nbsp;
+                                        </td>
+                                        <td style="middle">
+                                            <input type="button" class="mas" ng-click="sumarCantidadProducto($index);calcularTotalCompra();calcularNumeroProductos()">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="10%" align="center" style="vertical-align:middle" class="dest">$ {{producto[0].precio}}</td>
+                            <td width="15%" align="center" style="vertical-align:middle" class="destprecio">$ {{producto[0].precio*producto[1]}}</td>
+                            <td width="10%" align="center" style="vertical-align:middle; color:#666"><span style="cursor:pointer" ng-click="eliminarProducto($index);calcularTotalCompra();calcularNumeroProductos()">Eliminar</span></td>
+                        </tr>                      
+                    </table>                      
+                </div>
+                <div id="totalproductos">
+                    <table>
+                        <tr>
+                           <td width="10%" align="center" style="vertical-align:middle" ng-show="valor_total_compra.total>0 && cupon.activo === false">
+                               <input class="casdescuento" type="text" placeholder="Ingresa Tu Cupon" ng-model="cupon.serie">
+                           </td>
+                           <td width="10%" ng-show="valor_total_compra.total>0">
+                               <button class="botonguardar" type="button" ng-disabled="cupon.serie == ''" ng-click="getCupon()" ng-show="cupon.activo === false" >OBTEN DESCUENTO</button>
+                               <button class="botonguardar cuponActivo" type="button" ng-click="cupon.activo=false;cupon.serie=''" ng-show="cupon.activo === true">DESACTIVAR DESCUENTO</button>
+                           </td>
+                           <td width="10%"  style="vertical-align:middle" align="center">{{numero_productos.valor}} Productos</td>
+                           <td width="10%" align="center" style="vertical-align:middle;">
+                                <button type="button" class="botonguardar" ng-click="calcularDatosOrden();rutaContinuar();iniciarCompraFacebook();enviarDatos()" ng-show="valor_total_compra.total >= id_usuario_licorera.montominimo || valor_total_compra.total==0" ng-disabled="valor_total_compra.total <= 0">CONTINUAR</button>
+
+                                <button type="button" class="botonguardar" ng-show="valor_total_compra.total>0 && valor_total_compra.total < id_usuario_licorera.montominimo" ng-disabled="valor_total_compra.total < id_usuario_licorera.montominimo">COMPRA MINIMA ${{id_usuario_licorera.montominimo}}</button>
+
+                                <!--<a href="/accounts/login/" ng-show="datos_orden.cliente == 'null'"><button type="button" class="botonguardar">INICIAR SESIÓN</button></a>-->
+                           </td>                           
+                           <td width="10%" align="center" style="vertical-align:middle" class="dest">TOTAL</td>
+                           <td width="10%" align="center" style="vertical-align:middle;" class="destprecio">$ {{valor_total_compra.total}}</td>
+                           <td width="10%" align="center" style="vertical-align:middle; color:#666" class="destprecio" ng-show="cupon.activo === true"> -{{cupon.cupon[0].descuento}}% =</td>
+                           <td width="10%" align="center" style="vertical-align:middle;" class="destprecio" ng-show="cupon.activo === true">${{valor_total_compra.condescuento}}</td>
+                           <td width="10%" align="center" style="vertical-align:middle;" ng-show="valor_total_compra.total > id_usuario_licorera.montominimo"> + ${{id_usuario_licorera.costoenvio}} envío</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>            
+        </div>
+    </div>    
+</div>

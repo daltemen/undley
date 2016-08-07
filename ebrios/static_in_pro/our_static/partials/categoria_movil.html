@@ -1,0 +1,11 @@
+<div class="content" id="content" ng-controller="CategoriaController">
+    <!--<h1 align="center" style="color:#FFF;"><font color="#FF6600">----------</font>&nbsp;&nbsp;{{tabs.navegacion.categoria|uppercase}} &nbsp;&nbsp;<font color="#FF6600">----------</font></h1>-->
+    <div id="categoriaimg"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/{{tabs.navegacion.categoria|lowercase}}.jpg"></div>
+
+    <div id="categoria">
+       <span style="color:blue">{{categoria.id}}</span>
+        <div class="subcategoriabot" ng-repeat="subcategoria in subcategorias|filter:{categoria: categoria}" ng-click="tabs.go('/categoria/'+navegacion.categoria+'/'+subcategoria.nombre);tabs.subcategoria(subcategoria.nombre);tabs.registrarEventoGa('subcategoria','click subcategoria','click en '+subcategoria.nombre)">
+            <img src="https://ebriostatic.s3.amazonaws.com/media/producto/small{{subcategoria.nombre|lowercase}}.jpg">            
+        </div> 
+    </div>
+</div>

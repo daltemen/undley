@@ -1,0 +1,278 @@
+body {
+    overflow-x:hidden;
+    font-family:"Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.text-muted {
+    color:#777
+}
+.text-primary {
+    color:#f60
+}
+p {
+    font-size:14px;
+    line-height:1.75
+}
+p.large {
+    font-size:16px
+}
+a, a:hover, a:focus, a:active, a.active {
+    outline:0
+}
+a {
+    color:#f60
+}
+a:hover, a:focus, a:active, a.active {
+    color:#f90
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    font-weight:700
+}
+.img-centered {
+    margin:0 auto
+}
+.bg-light-gray {
+    background-color:#f7f7f7
+}
+.bg-darkest-gray {
+    background-color:#222
+}
+.btn-xl {
+    color:#fff;
+    background-color:#F60;
+    border-color:#F60;
+    font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    font-weight:700;
+    border-radius:3px;
+    font-size:18px;
+    padding:20px 40px
+}
+.btn-xl:hover, .btn-xl:focus, .btn-xl:active, .btn-xl.active, .open .dropdown-toggle.btn-xl {
+    color:#fff;
+    background-color:#F90;
+    border-color:#F90
+}
+.btn-xl:active, .btn-xl.active, .open .dropdown-toggle.btn-xl {
+    background-image:none
+}
+.btn-xl.disabled, .btn-xl[disabled], fieldset[disabled] .btn-xl, .btn-xl.disabled:hover, .btn-xl[disabled]:hover, fieldset[disabled] .btn-xl:hover, .btn-xl.disabled:focus, .btn-xl[disabled]:focus, fieldset[disabled] .btn-xl:focus, .btn-xl.disabled:active, .btn-xl[disabled]:active, fieldset[disabled] .btn-xl:active, .btn-xl.disabled.active, .btn-xl[disabled].active, fieldset[disabled] .btn-xl.active {
+    background-color:#F90;
+    border-color:#f90
+}
+.btn-xl .badge {
+    color:#f60;
+    background-color:#fff
+}
+.navbar-default {
+    background-color:#222;
+    border-color:transparent
+}
+.navbar-default .logo-brand {
+    margin:7px;
+    width: 150px;
+}
+.navbar-default .navbar-collapse {
+    border-color:rgba(255, 255, 255, .02)
+}
+.navbar-default .navbar-toggle {
+    background-color:#f60;
+    border-color:#f60
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color:#fff
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color:#f60
+}
+.navbar-default .nav li a {
+    font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    font-weight:400;
+    letter-spacing:1px;
+    color:#fff
+}
+.navbar-default .nav li a:hover, .navbar-default .nav li a:focus {
+    color:#f60;
+    outline:0
+}
+.navbar-default .navbar-nav>.active>a {
+    border-radius:0;
+    color:#fff;
+    background-color:#f60
+}
+.navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color:#fff;
+    background-color:#f60
+}
+@media (min-width:768px) {
+    .navbar-default {
+        background-color:transparent;
+        padding:25px 0;
+        -webkit-transition:padding .3s;
+        -moz-transition:padding .3s;
+        transition:padding .3s;
+        border:0
+    }
+    .navbar-default .logo-brand {
+        width: 400px;
+        -webkit-transition:all .3s;
+        -moz-transition:all .3s;
+        transition:all .3s
+    }
+    .navbar-default .navbar-nav>.active>a {
+        border-radius:3px
+    }
+    .navbar-default.navbar-shrink {
+        background-color:#222;
+        padding:10px 0
+    }
+    .navbar-default.navbar-shrink .logo-brand {
+        width: 200px
+    }
+}
+header {
+    background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/fondo-index.jpg);
+    background-repeat:none;
+    background-attachment:scroll;
+    background-position:center center;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+    -o-background-size:cover;
+    text-align:center;
+    color:#fff
+}
+header .intro-text {
+    padding-top:100px;
+    padding-bottom:50px
+}
+header .intro-text .intro-lead-in {
+    font-family:"Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style:italic;
+    font-size:22px;
+    line-height:22px;
+    margin-bottom:25px;
+}
+header .intro-text .intro-heading {
+    font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    font-weight:700;
+    font-size:50px;
+    line-height:50px;
+    margin-bottom:25px
+}
+@media (min-width:768px) {
+    header .intro-text {
+        padding-top:300px;
+        padding-bottom:200px
+    }
+    header .intro-text .intro-lead-in {
+        font-family:"Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-style:italic;
+        font-size:40px;
+        line-height:40px;
+        margin-bottom:25px
+    }
+    header .intro-text .intro-heading {
+        font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-transform:uppercase;
+        font-weight:700;
+        font-size:75px;
+        line-height:75px;
+        margin-bottom:50px
+    }
+}
+section {
+    padding:100px 0
+}
+section h2.section-heading {
+    font-size:40px;
+    margin-top:0;
+    margin-bottom:15px
+}
+section h3.section-subheading {
+    font-size:16px;
+    font-family:"Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:none;
+    font-style:italic;
+    font-weight:400;
+    margin-bottom:75px
+}
+@media (min-width:768px) {
+    section {
+        padding:150px 0
+    }
+}
+.service-heading {
+    margin:15px 0;
+    text-transform:none
+}
+
+aside.clients img {
+    margin:50px auto
+}
+footer {
+    background-color: #222;
+    padding:25px 0;
+    text-align:center
+}
+footer span.copyright {
+    color: #fff;
+    line-height:40px;
+    font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    text-transform:none
+}
+footer ul.quicklinks {
+    margin-bottom:0;
+    line-height:40px;
+    font-family:Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    text-transform:none
+}
+ul.social-buttons {
+    margin-bottom:0
+}
+ul.social-buttons li a {
+    display:block;
+    background-color:#222;
+    height:40px;
+    width:40px;
+    border-radius:100%;
+    font-size:20px;
+    line-height:40px;
+    color:#fff;
+    outline:0;
+    -webkit-transition:all .3s;
+    -moz-transition:all .3s;
+    transition:all .3s
+}
+ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li a:active {
+    background-color:#f60
+}
+.btn:focus, .btn:active, .btn.active, .btn:active:focus {
+    outline:0
+}
+::-moz-selection {
+    text-shadow:none;
+    background:#fed136
+}
+::selection {
+    text-shadow:none;
+    background:#fed136
+}
+img::selection {
+    background:0 0
+}
+img::-moz-selection {
+    background:0 0
+}
+body {
+    webkit-tap-highlight-color:#fed136
+}
+
+.guia {
+    margin-bottom: 25px
+}

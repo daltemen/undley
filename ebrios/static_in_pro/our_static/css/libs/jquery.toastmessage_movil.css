@@ -1,0 +1,168 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+
+.toast-container {
+	width: 280px;
+	z-index: 9999;
+}
+
+
+* html .toast-container {
+	position: absolute;
+}
+
+.toast-item {
+	height: auto;
+	background: #333;
+    opacity: 0.9;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	color: #eee;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 6px;
+	padding-right: 6px;
+	font-family: 'Oswald', sans-serif;
+	font-size: 14px;
+	border: 2px solid #f90;
+	display: block;
+	position: relative;
+	margin: 0 0 12px 0;
+}
+
+.toast-item p {
+    text-align: left;
+    margin-left: 50px;
+}
+
+.toast-item-close {
+    background:url(https://ebriostatic.s3.amazonaws.com/media/producto/close.gif);
+    width:22px;
+    height:22px;
+    position: absolute;
+    top:7px;
+    right:7px;
+}
+
+.toast-item-image {
+    width:32px;
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    left: 10px;
+}
+
+.toast-item-image-notice {
+    background:url(https://ebriostatic.s3.amazonaws.com/media/producto/notice.png);
+    background-repeat: no-repeat;
+}
+
+.toast-item-image-success {
+    background:url(https://ebriostatic.s3.amazonaws.com/media/producto/success.png);
+    background-repeat: no-repeat;
+}
+
+.toast-item-image-warning {
+    background:url(https://ebriostatic.s3.amazonaws.com/media/producto/warning.png);
+    background-repeat: no-repeat;
+}
+
+.toast-item-image-error {
+    background:url(https://ebriostatic.s3.amazonaws.com/media/producto/error.png);
+    background-repeat: no-repeat;
+}
+
+
+/**
+ * toast types
+ *
+ * pattern: toast-type-[value]
+ * where 'value' is the real value of the plugin option 'type'
+ *
+ */
+.toast-type-notice {
+    color: white;
+    background:  #2f96b4;
+    border-color:  #2f96b4;
+    opacity: 1;
+    font-size: 17px;
+}
+
+.toast-type-success {
+    color: white;
+    background: #32742C;
+    border-color: #32742C;
+    opacity: 1;
+    font-size: 17px;
+}
+
+.toast-type-warning {
+    color: white;
+     background: rgba(255,183,0,1);
+    background: -moz-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,183,0,1)), color-stop(100%, rgba(255,111,0,1)));
+    background: -webkit-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    opacity: 1;
+    font-size: 17px;
+}
+
+.toast-type-error {
+    color: white;
+    background: #bd362f;
+    border-color: #bd362f;
+    opacity: 1;
+    font-size: 17px;
+}
+
+/**
+ * positions
+ *
+ * pattern: toast-position-[value]
+ * where 'value' is the real value of the plugin option 'position'
+ *
+ */
+.toast-position-top-left {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+}
+
+.toast-position-top-center {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    margin-left: -140px;
+}
+
+.toast-position-top-right {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.toast-position-middle-left {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    margin-top: -40px;
+}
+
+.toast-position-middle-center {
+    position: fixed;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}
+
+.toast-position-middle-right {
+    position: fixed;
+    right: 20px;
+    margin-left: -140px;
+    margin-top: -40px;
+    top: 50%;
+}

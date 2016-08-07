@@ -1,0 +1,45 @@
+<div class="content" ng-controller="ProductosController">
+
+    <div id="subcategoriaimg"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/big{{tabs.navegacion.subcategoria|lowercase}}.jpg"></div>
+
+    <div id="subcategoria">
+        <div class="fichaproducto" ng-repeat="producto in productos|filter:{subcategoria:tabs.navegacion.subcategoria}">
+            <table width="100%" height="90px" align="center">
+                <tr>
+                    <td rowspan="2" width="20%" align="center" height="90px"> <img ng-src="{{producto.imagen}}" height="100%"></td>
+                    <td style="border-bottom:2px #fff solid" >{{producto.marca|uppercase}}</td>
+                    <td align="center" width="24%">
+                        <div id="botscant">
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:middle">
+                                        <input type="button" class="menos" ng-click="cantidad=cantidad-1" ng-disabled="cantidad<=1">
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input class="cascant" type="text" ng-model="cantidad" ng-init="cantidad=1" readonly>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input type="button" class="mas" ng-click="cantidad=cantidad+1">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="vertical-align:top">
+                        <table width="100%">
+                            <tr>
+                                <td class="precio" style="border-right:2px #fff solid">Tamaño: {{producto.tamano}}</td>
+                                <td class="precio">${{producto.precio}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align:middle"><input type="button" class="botanadir" value="Añadir" ng-click="agregar(producto.id,producto.marca,producto.tamano,cantidad,producto.precio,producto.imagen);tabs.animarCarrito();tabs.agregarAlCarritoFacebook(producto.marca,tabs.navegacion.subcategoria)"></td>
+                </tr>
+            </table>
+        </div>       
+    </div>
+</div>

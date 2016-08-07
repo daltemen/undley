@@ -1,0 +1,34 @@
+<div class="modalbox movedown" ng-controller="BuzonController">
+   <div id="direccionpop">
+        <div id="popencabezado">BUZÓN DE SUGERENCIAS</div>
+        <div id="titulopopdireccion">TU OPINIÓN ES MUY IMPORTANTE PARA NOSOTROS</div>
+        
+        <div id="direccion">
+            <form name="buzonForm">
+                <table>
+                    <tr>
+                        <span class="fila_buzon">Selecciona el tipo de comentario</span>
+                    </tr>
+                    <tr>
+                        <select name="opcion" ng-model="buzon.categoria_comentario" class="registrobuzonfieldsselect fila_buzon"  ng-options="opcion as opcion | uppercase for opcion in opciones_buzon" required></select>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea name="contenido" class="texto_buzon" ng-model="buzon.comentario" maxlength="1000" cols="100" rows="1" placeholder="Escribe aquí tu comentario" required></textarea>
+                        </td>
+                    </tr>                                 
+                </table>
+            </form>
+        </div>
+        
+        <div class="botones_buzon">
+            <div>
+                <input type="button" class="boton_buzon" value="ENVIAR" ng-click="enviarBuzon();cambiarValorValidacionBuzon()" ng-disabled="!buzonForm.$valid">
+            </div>
+            <div>
+                <input type="button" class="boton_buzon" value="CERRAR" ng-click="cambiarValorValidacionBuzon()">
+            </div>
+        </div>
+        
+    </div>
+</div>

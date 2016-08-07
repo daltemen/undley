@@ -1,0 +1,93 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Licor a domicilio en bogotá - Ebrios.co</title>
+    <meta name="description" content="Licor a domicilio en Bogotá 24 horas, NO DEJES QUE LA FIESTA TERMINE haz tu domicilio y obtén un 10% de descuento">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F60">
+    <link rel="icon" type="image/png" href="https://ebriostatic.s3.amazonaws.com/media/producto/favicon100.png">
+    <!-- Entrada de CSS-->
+    <link rel="stylesheet" type='text/css' href="{% static 'css/estilos_desktop.css' %}">
+    <!--ANALYTICS-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-77424835-1', 'auto');
+      ga('send', 'pageview');
+        
+      function carritoContinuar(){
+          var vieneDesdeContinuar = JSON.parse(sessionStorage['continuarCarrito']);
+          if(vieneDesdeContinuar){
+              sessionStorage['mostrarCarrito']=JSON.stringify(true);
+          }else{
+              sessionStorage['mostrarCarrito']=JSON.stringify(false);
+          }
+      }
+    </script>
+</head>
+{% verbatim %}
+<body>
+    
+    <div class="bodyport">
+        <div id="tablelogin">
+            <div id="registro">            
+                <table>
+                    <tr>
+                        <td align="center"><img class="imgregistro" src="https://ebriostatic.s3.amazonaws.com/media/producto/logologin.png"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="titulologin"><h1><font>--------</font>&nbsp;&nbsp;INICIA SESIÓN O REGISTRATE &nbsp;&nbsp;<font>--------</font></h1></td>
+                    </tr> 
+                    {% endverbatim %} 
+                    <tr>
+                        <td colspan="2" align="center">
+                            <a href="{% url 'social:begin' 'facebook' %}" onclick="carritoContinuar()">
+                                <img class="ingredes" src="https://ebriostatic.s3.amazonaws.com/media/producto/ingresofacebook.jpg">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <a href="/accounts/login">Ingresar con email</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <span class="sin-cuenta">¿Aún no tienes cuenta?</span>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td colspan="2" align="center">
+                            <a href="{% url 'social:begin' 'facebook' %}" onclick="carritoContinuar()">
+                                <img class="ingredesregistro" src="https://ebriostatic.s3.amazonaws.com/media/producto/registrofacebook.jpg">
+                            </a>
+                        </td>  
+                    </tr>
+                    {% verbatim %}                    
+                    <tr>
+                        <td colspan="2" align="center">
+                            <a href="/registro">Registrate con email</a>
+                        </td>
+                    </tr>                  
+                </table>
+                <table align="center" style="margin-top:60px;">
+                    <tr>
+                        <td align="center" class="regreg">
+                            <span>Al registrarte estas de acuerdo con las <a class="condiciones" target="_newtab" href="/terminosycondiciones">condiciones del servicio</a></span>
+                        </td>
+                    </tr>
+                </table> 
+            </div>
+        </div>
+    </div>
+
+    <div id="firma">PROHIBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD, LEY 124 DE 1994. EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA SALUD, LEY 30 DE 1986 </div>
+    
+</body>
+{% endverbatim %}  
+</html>

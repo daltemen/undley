@@ -1,0 +1,117 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es" ng-app="ebrios">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Licor a domicilio en bogotá - Ebrios.co</title>
+    <meta name="description" content="Licor a domicilio en Bogotá 24 horas, NO DEJES QUE LA FIESTA TERMINE haz tu domicilio y obtén un 10% de descuento">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F60">
+    <link rel="icon" type="image/png" href="https://ebriostatic.s3.amazonaws.com/media/producto/favicon100.png">
+    <!-- Entrada de CSS-->
+    <link rel="stylesheet" type='text/css' href="{% static 'css/estilos_desktop.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/slick.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libs/jquery.toastmessage.css' %}">
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all'>
+    <!--SCRIPTS-->
+    <script src="{% static 'js/libs/jquery.min.js' %}"></script>
+    <script src="{% static 'js/libs/angular.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular-route.min.js' %}"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+    <script src="{% static 'js/libs/slick.js' %}"></script>
+    <script src="{% static 'js/libs/angular-slick.js' %}"></script>
+    <script src="{% static 'js/app_desktop.js' %}"></script>
+    <script src="{% static 'js/controllers_desktop.js' %}"></script>
+    <script src="{% static 'js/services_desktop.js' %}"></script>
+    <script src="{% static 'js/directives_desktop.js' %}"></script>
+    <script src="{% static 'js/libs/jquery.toastmessage.js' %}"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-77424835-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+{% verbatim %}
+<body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=1826828040877998";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="bodyport">
+        <div id="tablelogin">
+            <div id="portada">
+                <form name="formularioInicio">
+                    <table ng-controller="RegistroController">
+                        <tr>
+                            <td align="center" colspan="2"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/logologin.png" width="100%"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" ><h1>¡Licores a domicilio en bogotá! </h1></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" class="edadport">
+                                <table align="center">
+                                    <tr>
+                                        <td style="font-size:10px">FECHA DE NACIMIENTO</td>
+                                        <td>
+                                            <select name="dia" ng-model="fecha_inicio.dia" class="registrodirfieldsselect fecha"  ng-options="opcion for opcion in dias" ng-click="calcularAnos()" required>
+                                                <option value="">-DIA-</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="mes" ng-model="fecha_inicio.mes" class="registrodirfieldsselect fecha"  ng-options="opcion for opcion in meses" ng-click="calcularAnos()" required>
+                                                <option value="">-MES-</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="ano" ng-model="fecha_inicio.ano" class="registrodirfieldsselect fecha" ng-options="opcion for opcion in anos" ng-click="calcularAnos()" required>
+                                                <option value="">-AÑO-</option>
+                                            </select> 
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="wrapbotonesindex">
+                            <td>
+                                <input type="button" class="botonindex ingreso" value="INGRESAR"  onclick="location='/compras/'" ng-disabled="!formularioInicio.$valid">
+                            </td>
+                        </tr>
+                        <tr class="wrapbotonesindex">
+                            <td>
+                                <input type="button" class="botonindex secundario" value="INICIAR SESIÓN" onclick="location='/accounts/login/'">
+                            </td>
+                            <td>
+                                <input type="button" class="botonindex secundario" value="REGISTRARSE" onclick="location='/registro/'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <img src="https://ebriostatic.s3.amazonaws.com/media/producto/open.png" width="100%">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                
+                <div id="redeslogin">
+                    <div class="fb-like" data-href="https://www.facebook.com/licoradomicilioenbogota24horas/" data-width="300" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="firma">PROHIBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD, LEY 124 DE 1994. EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA SALUD, LEY 30 DE 1986 </div>
+    
+</body>
+{% endverbatim %}  
+</html>

@@ -1,0 +1,197 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="ebriosMovil">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Licor a domicilio en bogotá - Ebrios.co</title>
+    <meta name="description" content="Licor a domicilio en Bogotá 24 horas, NO DEJES QUE LA FIESTA TERMINE haz tu domicilio y obtén un 10% de descuento">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#F60">
+    <link rel="icon" type="image/png" href="https://ebriostatic.s3.amazonaws.com/media/producto/favicon100.png">
+    <!--ESTILOS-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/estilos_movil.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/libs/jquery.toastmessage_movil.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'dist/core/css/jquery.mmenu.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'dist/addons/css/jquery.mmenu.dragopen.css' %}" />
+
+    <!-- for the one page layout -->
+    <style type="text/css">
+        #intro,
+        #first,
+        #second,
+        #third
+        {
+            height: 400px;
+        }
+        #intro
+        {
+            padding-top: 0;
+        }
+        #first,
+        #second,
+        #third
+        {
+            border-top: 1px solid #ccc;
+            padding-top: 150px;
+        }
+    </style>
+		
+    <!-- for the fixed header -->
+    <style type="text/css">
+        .header,
+        .footer
+        {
+            box-sizing: border-box;
+            position: fixed;
+        }
+        .header
+        {
+            top: 0;
+        }
+        .footer
+        {
+            bottom: 0;
+        }
+    </style>
+		
+    <script type="text/javascript" src="{% static 'js/libs/hammer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/core/js/jquery.mmenu.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/addons/js/jquery.mmenu.dragopen.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/addons/js/jquery.mmenu.fixedelements.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var $menu = $('nav#menu'),
+                $html = $('html, body');
+            $menu.mmenu({
+                dragOpen: true
+            });
+            var $anchor = false;
+            $menu.find( 'li > a' ).on(
+                'click',
+                function(e){
+                    $anchor = $(this);
+                }
+            );
+            var api = $menu.data( 'mmenu' );
+            api.bind('closed',function(){
+                if($anchor){
+                    var href = $anchor.attr( 'href' );
+                    $anchor = false;
+                    //	if the clicked link is linked to an anchor, scroll the page to that anchor 
+                    if(href.slice( 0, 1 ) == '#'){
+                        $html.animate({
+                            scrollTop: $( href ).offset().top
+                        });	
+                    }
+                }
+            }
+            );
+        });
+    </script>
+    <script type="text/javascript">
+        if (window.location.hash && window.location.hash == '#_=_') {
+            window.location.hash = '';
+        }
+    </script>
+    <!-- analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        
+        $.ajax(
+            {
+              url : '/obtenerclienteautenticado/',
+              type: "GET",
+            })
+              .done(function(data) {
+                if(data.id == 'null'){
+                    ga('create', 'UA-77424835-1', 'auto');
+                    ga('require', 'ecommerce');
+                } else {
+                    ga('create', 'UA-77424835-1', { 'userId': data.id });
+                    ga('require', 'ecommerce');
+                };
+              })
+              .fail(function(data) {
+                    ga('create', 'UA-77424835-1', 'auto');
+                    ga('require', 'ecommerce');
+              });
+    </script>
+    <!-- End analytics -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '499589496908870');
+        fbq('track', "PageView");
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=499589496908870&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+{% verbatim %}
+<body ng-controller="TabsController as tabs">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=1826828040877998";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="men"><a href="#menu"></a></div>
+    <div class="car" ng-controller="CarritoController">
+        <a href="" ng-click="tabs.go('carrito')" ng-class="{animacioncarrito:tabs.animacion_carrito.animar === true}"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/car_movil.png"></a>
+        <div id="art" ng-class="{animacionart:tabs.animacion_carrito.animar === true}"><span>{{carrito.cantidadDeItems}}</span></div>
+    </div>
+    <div class="header"> 
+        <a href="" ng-click="tabs.go('/')"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/logo_movil.png" style="padding-top:7px;"></a>
+    </div>
+    
+    <div class="modalmask" ng-class="{abrir:tabs.validacion_direccion === false}">
+        <ingresodireccion></ingresodireccion>
+    </div>   
+    
+    <nav id="menu">
+        <ul>
+            <li><a href="#" ng-click="tabs.go('/')">INICIO</a></li>
+		    <li><a href="#" ng-click="tabs.go('/categoria/licores');tabs.registrarEventoGa('categoria','click categoria','click en licores')">LICORES</a></li>
+			<li><a href="#" ng-click="tabs.go('/categoria/snacks & bebidas');tabs.registrarEventoGa('categoria','click categoria','click en snacks & bebidas')">SNACKS & BEBIDAS</a></li>
+			<li><a href="#" ng-click="tabs.go('/categoria/tienda');tabs.registrarEventoGa('categoria','click categoria','click en tienda')">TIENDA</a></li>
+            <li class="menuser"><a href="#" ng-click="tabs.validacion_direccion=false;">CAMBIAR DIRECCIÓN</a></li>
+            <li class="menuser"><a href="/ingreso" ng-show="cliente.nombre==='Anonimo'">INICIAR SESIÓN</a></li>
+            <li class="menuser"><a href="/accounts/logout" ng-show="cliente.nombre!='Anonimo'">CERRAR SESIÓN</a></li>
+            <li>
+                <span style="color:#f60;font-size:17px">¿PROBLEMAS CON TU PEDIDO?</span>
+                <span style="color:#43d854;font-size:17px">WHATS APP: </span><span style="font-size:18px"> 314 480 1136</span>
+            </li>
+            <div class="fb-like menredes" data-href="https://www.facebook.com/licoradomicilio24horas/" data-width="250" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+        </ul>               
+    </nav>
+    
+    <div ng-view></div>
+    
+    {% endverbatim %}     
+
+    <!--SCRIPTS-->
+    <script type="text/javascript" src="{% static 'js/libs/jquery.toastmessage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular-route.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular-resource.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app_movil.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/controllers_movil.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/services_movil.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/directives_movil.js' %}"></script>
+    
+</body>
+</html>

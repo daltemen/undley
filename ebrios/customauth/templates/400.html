@@ -1,0 +1,111 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+{% if flavour == "mobile" %}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Ebrios.co - Licor a domicilio en bogotá</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--ESTILOS-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/estilos_movil.css' %}">
+    
+</head>
+
+<body>
+    <div id="portada">
+        <table align="center">
+            <tr>
+                <td align="center"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/logologin.png" width="80%" style="margin-top:10px;" /></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <h1 style="font-family:Tahoma, Geneva, sans-serif; font-style:italic; font-size:12px; color:#FFF" >¡Licores a domicilio en bogotá! </h1>
+                </td>
+            </tr>
+        </table>
+        <table align="center" style="margin-top:15px;">
+
+            <tr>
+                <td colspan="3" align="center" style="font-size:12px; line-height:12px;">! Uuuups lo que estás buscando no está aquí ¡</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <button type="button" class="botconfirmar" onclick="location='/accounts/login'">INICIAR SESIÓN</button>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"  style="padding-top:10px;">
+                    <a href="face"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/fb.png" width="40" height="40" /></a>
+                    <a href="app"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/pl.png" width="40" height="40" /></a>
+                    <a href="twitter"><img src="https://ebriostatic.s3.amazonaws.com/media/producto/tw.png" width="40" height="40" /></a>
+                </td>
+            </tr>
+        </table>        
+    </div>
+    
+</body>
+</html>
+
+{% else %}
+
+<html>
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Ebrios.co - Licor a domicilio en bogotá</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--ESTILOS-->
+    <link href="{% static 'css/estilos_desktop.css' %}" rel="stylesheet" type="text/css" media="screen">
+
+</head>
+<body class="bodylogin">
+    <div id="tablelogin">
+        <div id="login">
+            <table>
+                <tr>
+                    <td align="center" colspan="2"><img src="https://ebriostatic.s3.amazonaws.com/media/img/logologin.png" width="90%"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" class="titulologin"><h4>! Uuuups lo que estás buscando no está aquí ¡</h4></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <br>
+                        <a href="/accounts/login/"><input class="botonguardar" value="INICIAR SESIÓN"></a> 
+                    </td>
+                </tr>
+            </table>
+            <div id="redeslogin">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="">
+                                <div class="facebook"></div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="">
+                                <div class="play"></div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="">
+                                <div class="app"></div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="">
+                                <div class="twitter"></div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="firma">PROHIBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD, LEY 124 DE 1994. EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA SALUD, LEY 30 DE 1986 </div>
+
+</body>
+</html>
+{% endif %}

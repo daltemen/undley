@@ -1,0 +1,56 @@
+<div class="modalbox movedown" ng-controller="DireccionController">
+   <div id="direccionpop">
+        <div id="popencabezado">DIRECCIÓN</div>
+        <div id="titulopopdireccion">DIGITA LA DIRECCIÓN DE ENTREGA DEL PEDIDO</div>
+        
+        <div id="direccion">
+            <form name="direccionForm">
+                <table>
+                    <tr>
+                        <td>
+                            <select name="opcion" ng-model="opcion_direccion_seleccionada" class="registrodirfieldsselect diruno"  ng-options="opcion as opcion.nombre | uppercase for opcion in opciones_direccion" required></select>
+                        </td>
+
+                        <td>
+                            <input name="valoruno" type="text" class="registrodirfields" ng-model="valores.valor_uno" ng-pattern="/^[a-zA-Z0-9' ']+$/" required>
+                        </td>
+
+                        <td>
+                            <input type="checkbox" class="check_dir" ng-model="valores.es_sur" ng-if="opcion_direccion_seleccionada.valor === 1"><span ng-if="opcion_direccion_seleccionada.valor === 1">sur </span>
+                            <input type="checkbox" class="check_dir" ng-model="valores.es_este" ng-if="opcion_direccion_seleccionada.valor === 2"><span ng-if="opcion_direccion_seleccionada.valor === 2">este </span>
+                        </td>
+
+                        <td>&nbsp;#&nbsp;</td>
+
+                        <td><input name="valordos" type="text" class="registrodirfields" ng-model="valores.valor_dos" ng-pattern="/^[a-zA-Z0-9' ']+$/" required></td>
+
+                        <td>&nbsp;--&nbsp;</td>
+
+                        <td><input name="valortres" type="text" class="registrodirfields" ng-model="valores.valor_tres" ng-pattern="/^[a-zA-Z0-9' ']+$/" required></td>
+
+                        <td>
+                            <input type="checkbox" class="check_dir" ng-model="valores.es_sur" ng-if="opcion_direccion_seleccionada.valor === 2"><span ng-if="opcion_direccion_seleccionada.valor === 2">sur </span>
+                            <input type="checkbox" class="check_dir" ng-model="valores.es_este" ng-if="opcion_direccion_seleccionada.valor === 1"><span ng-if="opcion_direccion_seleccionada.valor === 1">este </span>
+                        </td>
+                    </tr>                                   
+                </table>
+            </form>
+        </div>
+        
+        <div class="wrap_complemento_direccion">
+            <textarea id="complemento_direccion" ng-model="valores.complemento" maxlength="40" cols="50" rows="1" placeholder="Ejm: Conjunto rosaleda, apto 101 torre 12"></textarea>
+        </div>
+        
+        <div class="vista_direccion">
+            {{opcion_direccion_seleccionada.nombre | uppercase}} {{valores.valor_uno | uppercase}} <span ng-if="valores.es_sur === true && opcion_direccion_seleccionada.valor === 1">sur</span> <span ng-if="valores.es_este === true && opcion_direccion_seleccionada.valor === 2">este </span> # {{valores.valor_dos | uppercase}} -- {{valores.valor_tres | uppercase}} <span ng-if="valores.es_sur === true && opcion_direccion_seleccionada.valor === 2">sur </span> <span ng-if="valores.es_este === true && opcion_direccion_seleccionada.valor === 1">este </span>
+        </div>
+        
+        <div class="vista_complemento">
+            {{valores.complemento}}
+        </div>
+        
+        <div id="reportevolver">
+            <input type="button" class="botondireccion" value="CONFIRMAR" ng-click="obtenerLicorera();cambiarValorValidacionDireccion();go('/')" ng-disabled="!direccionForm.$valid">
+        </div>
+    </div>
+</div>

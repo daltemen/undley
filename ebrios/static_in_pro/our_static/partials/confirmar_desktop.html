@@ -1,0 +1,59 @@
+<div ng-controller="CarritoController">
+    <div id="mainproductocheckin">
+        <div id="botonvolvercarrito">
+            <input type="button" value="<-- VOLVER AL CARRITO" class="botonvolvercarrito" ng-click="go('/carrito/')">
+        </div> 
+        <div id="contproductocheckin">
+            <H1><font>------------------</font>&nbsp;&nbsp;REALIZA TU PEDIDO EN 2 PASOS &nbsp;&nbsp;<font>------------------</font></H1>
+            <div id="titulocheck2productos">2. CONFIRMA TU INFORMACIÓN</div>
+
+            <div id="confinfopedido">
+               <form name="confirmacionForm">
+                   <table>
+                        <tr>
+                            <td align="center" style="vertical-align:middle"> TU PEDIDO TOTAL: <span class="dest"> $ {{datos_orden.total_compra}}</span></td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle" class="item_confirmacion"> TU PEDIDO SERA ENTREGADO EN:</td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle" class="desttitulo"> {{datos_orden.direccion_cliente}}</td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle" class="item_confirmacion">TU NÚMERO DE CONTACTO ES:</td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle">
+                                <input type="text" class="telefonofield" name="telefono" ng-model="datos_orden.telefono_cliente" ng-minlength="7" ng-maxlength="10" ng-pattern="/^[0-9]+$/" placeholder="TELÉFONO" autocomplete="off" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle">
+                                <span class="aviso_obligatorio" ng-show="confirmacionForm.telefono.$error.pattern">Solo se admiten números</span>
+                                <span class="aviso_obligatorio" ng-show="confirmacionForm.telefono.$error.minlength">Mínimo 7 digitos</span>
+                                <span class="aviso_obligatorio" ng-show="confirmacionForm.telefono.$error.maxlength">Máximo 10 digitos</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle" class="item_confirmacion">ELIGE EL MEDIO DE PAGO:</td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle">
+                                <input name="medio_pago" type="radio" ng-model="datos_orden.observacion" value="efectivo" ng-show="id_usuario_licorera.efectivo == true" required>
+                                <span style="color:#f60" ng-show="id_usuario_licorera.efectivo == true">Efectivo</span>
+                                <input name="medio_pago" type="radio" ng-model="datos_orden.observacion" value="tarjeta" ng-show="id_usuario_licorera.tarjeta == true" required>
+                                <span style="color:#f60" ng-show="id_usuario_licorera.tarjeta == true">Tarjeta Debito/Credito</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="vertical-align:middle" class="item_confirmacion">
+                               <button type="button" class="botonconfirmar" ng-click="compraRealizadaFacebook(datos_orden.total_compra);enviarOrden()" ng-disabled="!confirmacionForm.$valid">CONFIRMAR PEDIDO</button>
+                            </td>
+                        </tr>
+                    </table>
+               </form>
+            </div>
+
+        </div>
+    </div>
+</div>

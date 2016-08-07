@@ -1,0 +1,154 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es" ng-app="ebrios">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type">
+    <title>Licor a domicilio en bogotá - compras</title>
+    <meta name="description" content="Licor a domicilio en Bogotá 24 horas, NO DEJES QUE LA FIESTA TERMINE haz tu domicilio y obtén un 10% de descuento">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F60">
+    <link rel="icon" type="image/png" href="https://ebriostatic.s3.amazonaws.com/media/producto/favicon100.png">
+    <!-- Entrada de CSS-->
+    <link rel="stylesheet" type='text/css' href="{% static 'css/estilos_desktop.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/slick.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/slick-theme.css' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/libs/csshake.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libs/jquery.toastmessage.css' %}">
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all'>
+    <!--SCRIPTS-->
+    <script src="{% static 'js/libs/jquery.min.js' %}"></script>
+    <script src="{% static 'js/libs/angular.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular-route.min.js' %}"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+    <script src="{% static 'js/libs/slick.js' %}"></script>
+    <script src="{% static 'js/libs/angular-slick.js' %}"></script>
+    <script src="{% static 'js/app_desktop.js' %}"></script>
+    <script src="{% static 'js/controllers_desktop.js' %}"></script>
+    <script src="{% static 'js/services_desktop.js' %}"></script>
+    <script src="{% static 'js/directives_desktop.js' %}"></script>
+    <script src="{% static 'js/libs/jquery.toastmessage.js' %}"></script>
+    <script type="text/javascript">
+        if (window.location.hash && window.location.hash == '#_=_') {
+            window.location.hash = '';
+        }
+    </script>
+    <!-- analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        
+        $.ajax(
+            {
+              url : '/obtenerclienteautenticado/',
+              type: "GET",
+            })
+              .done(function(data) {
+                if(data.id == 'null'){
+                    ga('create', 'UA-77424835-1', 'auto');
+                    ga('require', 'ecommerce');
+                } else {
+                    ga('create', 'UA-77424835-1', { 'userId': data.id });
+                    ga('require', 'ecommerce');
+                };
+              })
+              .fail(function(data) {
+                    ga('create', 'UA-77424835-1', 'auto');
+                    ga('require', 'ecommerce');
+              });
+        
+    </script>
+    <!-- End analytics -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '499589496908870');
+        fbq('track', "PageView");
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=499589496908870&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+{% verbatim %}
+<body ng-controller="NavController">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=1826828040877998";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div ng-controller="PrincipalController">
+   
+        <div id="contmenu">
+            <div id="logo">
+                <img src="https://ebriostatic.s3.amazonaws.com/media/producto/logo.png" ng-click="go('/')">
+            </div>
+            <div id="cajamenu">
+                <div id="menu">
+                    <ul>
+                        <li id="licores"><a href="" ng-click="go('categoria/licores');registrarEventoGa('categoria','click categoria','click en licores')">LICORES</a></li>
+                        <li> <a href="" ng-click="go('categoria/snacks & bebidas');registrarEventoGa('categoria','click categoria','click en snacks & bebidas')">SNACKS & BEBIDAS</a></li>
+                        <li> <a href="" ng-click="go('categoria/tienda');registrarEventoGa('categoria','click categoria','click en tienda')">TIENDA</a></li>
+                        
+                    </ul>
+                    <img src="https://ebriostatic.s3.amazonaws.com/media/producto/lineas.png">
+                    <ul>
+                        <li><a href="" ng-click="cambiarValorValidacionDireccion();">CAMBIAR DIRECCIÓN</a></li>
+                        <li><a href="" ng-click="cambiarValorValidacionBuzon()">BUZÓN DE SUGERENCIAS</a></li>
+                        <li ng-show="datos_orden.cliente != 'null'"><a href="/accounts/logout/">CERRAR SESIÓN</a></li>
+                        <li ng-show="datos_orden.cliente == 'null'"><a href="/ingreso">INICIAR SESIÓN</a></li>
+                    </ul>
+                    <img src="https://ebriostatic.s3.amazonaws.com/media/producto/lineas.png">
+                    <ul>
+                        <li><span style="color:#f60;font-size:17px">¿PROBLEMAS CON TU PEDIDO?</span></li>
+                        <li><span style="color:#43d854;font-size:17px">WHATS APP: </span><span style="font-size:18px"> 314 480 1136</span></li>
+                    </ul>
+                    <img src="https://ebriostatic.s3.amazonaws.com/media/producto/lineas.png">
+                    <div id="redes">
+                        <div class="fb-like" data-href="https://www.facebook.com/licoradomicilio24horas/" data-width="300" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loguser">
+            <table>
+                <tr>
+                    <td style="vertical-align:top;" ng-class="{'shake shake-slow shake-constant shake-constant--hover': animacion_carrito.animar === true}">
+                        <div id="art">{{numero_productos.valor}} Items</div>
+                    </td>
+                    <td style="vertical-align:middle; cursor:pointer" ng-class="{'shake shake-slow shake-constant shake-constant--hover': animacion_carrito.animar === true}">
+                        <img ng-click="go('carrito')" src="https://ebriostatic.s3.amazonaws.com/media/producto/botcar.png">
+                    </td>
+                    <td class="loguser" style="cursor:pointer">Hola, {{cliente_autenticado.nombreusuario}}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="modalmask" ng-class="{abrir:validacion_direccion === false}">
+            <ingresodireccion></ingresodireccion>
+        </div>
+        
+        <div class="modalmask" ng-class="{abrir:validacion_buzon === true}">
+            <buzonsugerencias></buzonsugerencias>
+        </div>
+        
+        <div ng-view></div>
+
+    </div>
+
+    <div id="firma">PROHIBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD, LEY 124 DE 1994. EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA SALUD, LEY 30 DE 1986 </div>
+    
+</body>
+{% endverbatim %}  
+</html>

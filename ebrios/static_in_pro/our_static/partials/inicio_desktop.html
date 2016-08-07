@@ -1,0 +1,17 @@
+<div id="mainprincipal" ng-show="nav === 0">
+    <div id="bannerprincipal">
+        <img class="bottom" src="https://ebriostatic.s3.amazonaws.com/media/producto/bannerprin.jpg">   
+        <img class="top" src="https://ebriostatic.s3.amazonaws.com/media/producto/bannerprin2.jpg">   
+    </div>
+    <div id="bannersecundarios"> 	
+        <div class="banner1 overlay negro" ng-click="go('categoria/licores');registrarEventoGa('categoria','click categoria','click en licores')">
+            <div class="nombrebanner">--- LICORES ---</div>
+        </div>
+        <div class="banner2 overlay negro" ng-click="go('categoria/snacks & bebidas');registrarEventoGa('categoria','click categoria','click en snacks & bebidas')">
+            <div class="nombrebanner">--- SNACKS & BEBIDAS ---</div>
+        </div>
+        <div class="banner3 overlay negro" ng-click="go('categoria/tienda');registrarEventoGa('categoria','click categoria','click en tienda')">
+            <div class="nombrebanner">--- TIENDA ---</div>
+        </div>
+    </div>
+</div>

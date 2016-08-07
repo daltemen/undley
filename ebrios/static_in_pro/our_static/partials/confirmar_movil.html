@@ -1,0 +1,48 @@
+<div class="content" id="content" ng-controller="CarritoController">
+    <h1 align="center" style="color:#FFF;"><font color="#FF6600">----------</font>&nbsp;&nbsp;PASO 2 &nbsp;&nbsp;<font color="#FF6600">----------</font></h1>
+    <h3 align="center" style="font-size:17px"><font color="#F90">INGRESA TU TELÉFONO Y MEDIO DE PAGO</font></h3>
+
+    <div class="confpedido">
+        <form name="formularioConfirmacion" ng-controller="OrdenController">
+            <table width="100%">
+                <tr>
+                    <td align="center" style="vertical-align:middle"> TU PEDIDO TOTAL: <span class="precio"> ${{ carrito.total*((100-carrito.descuento)/100) + licorera.costoEnvio}}</span></td>
+                </tr>
+                <tr>
+                    <td align="center" style="vertical-align:middle"> TU PEDIDO SERA ENTREGADO EN:</td>
+                </tr>
+                <tr>
+                    <td align="center" style="vertical-align:middle" class="precio"> {{orden.direccion_cliente|uppercase}}</td>
+                </tr>
+                <tr>
+                    <td align="center" style="vertical-align:middle">TU NÚMERO DE CONTACTO ES:</td>
+                </tr>
+                <tr>
+                    <td align="center" style="vertical-align:middle">
+                        <input type="text" class="registrofields" name="telefono" ng-model="telefonoCliente" style="width:200px;color:#F90;font-size: 13px;font-weight:bold;" ng-minlength="7" ng-maxlength="10" ng-pattern="/^[0-9]+$/" placeholder="Ingresa tu Teléfono" autocomplete="off" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="vertical-align:middle">ELIJE EL MEDIO DE PAGO:</td>
+                </tr>
+                <tr>
+                    <td align="center">                        
+                            <input type="radio" name="efectivo" id="efectivo" value="efectivo" ng-model="orden.observacion" ng-show="licorera.pagoEfectivo" required><label for="efectivo" class="precio" ng-show="licorera.pagoEfectivo">EFECTIVO</label>
+                            <input type="radio" name="tarjeta" id="tarjeta" value="tarjeta" ng-model="orden.observacion" ng-show="licorera.pagoTarjeta"required><label for="tarjeta" class="precio" ng-show="licorera.pagoTarjeta">TARJETA Debito/Credito</label>                        
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <span ng-show="!licorera.pagoTarjeta">Por el momento solo se admiten pagos en efectivo</span>
+                        <span ng-show="!licorera.pagoEfectivo">Por el momento solo se admiten pagos con tarjeta</span>
+                    </td>
+                </tr>               
+                <tr>
+                    <td align="center"style="vertical-align:middle" >
+                        <input type="button" class="botconfirmar2"  value="CONFIRMAR PEDIDO" ng-click="tabs.go('enviado');llenarOrden();compraRealizadaFacebook()" ng-disabled="!formularioConfirmacion.$valid">
+                    </td>
+                </tr>
+            </table>
+        </form>        
+    </div>
+</div>

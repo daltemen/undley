@@ -1,0 +1,1678 @@
+@charset "iso-8859-1";
+/* CSS Document */
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+
+html{
+    height: 100%;
+}
+
+body {
+	font-family:"Alternate", Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/bg.jpg);
+	background-attachment:fixed;
+    height: 100%;
+    min-width: 950px;
+}
+
+::-webkit-scrollbar{
+    width: 12px;
+    background: #dbe8ec;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #666;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+a {
+    color: #fff;
+}
+
+/*MENU PRINCIPAL*/
+#contmenu { 
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    width: 22%;
+    min-width: 218.5px;
+    height: 100%;
+    z-index: 10;
+}
+
+    #logo {
+        cursor: pointer;
+        position:absolute;
+        z-index:12;
+    }
+
+    #logo img {
+        width: 100%;
+    }
+
+    #cajamenu{ 
+        position:absolute;
+        width: 81%;
+        height: 100%;
+        background: rgba(0,0,0,0);
+        background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(61,61,61,0.71) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(61,61,61,0.71)));
+        background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(61,61,61,0.71) 100%);
+        background: -o-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(61,61,61,0.71) 100%);
+        background: -ms-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(61,61,61,0.71) 100%);
+        background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(61,61,61,0.71) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#3d3d3d', GradientType=1 );
+        z-index:11;
+    }
+
+        #menu { 
+            position: absolute;
+            left: -6%;
+            width: 100%;
+            text-align: center;
+            margin-top: 80%;
+        }
+
+        #menu img {
+            width: 75%;
+            margin-left:15%;
+        }
+
+        #menu ul {
+            list-style:none;
+        }
+
+        #menu ul li {
+            margin-top: 5px;
+            font-family: 'Oswald', sans-serif;
+            font-size:14px;
+            color:#fff
+        }
+
+        #menu li a{ 
+            text-decoration:none;
+            color:#FFF;
+            -webkit-transition:all 1s ease;
+            -moz-transition:all 1s ease;
+            -o-transition:all 1s ease;
+            transition:all 1s ease;
+        }
+
+        #menu li a:hover{ 
+            text-decoration:none;
+            color: #F30;
+        } 
+
+        #redes {
+            width: 100%;/*353PX*/
+            margin-left: auto;
+            margin-right: auto;
+            text-align:center;
+            font-family: 'Oswald', sans-serif;
+            font-size:10px;
+            color:#fff;
+            margin-top: 10px;
+            margin-left: 8%
+        }
+
+        #redes table{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+            .facebook { 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/fb.png);
+                width: 40px;
+                height: 40px;
+                background-repeat: no-repeat;
+                -webkit-transition:all 1s ease;
+                -moz-transition:all 1s ease;
+                -o-transition:all 1s ease;
+                transition:all 1s ease;
+                cursor:pointer;
+            }
+
+            .facebook:hover {
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/fbon.png);
+                background-repeat: no-repeat;
+            }
+
+            .play { 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/pl.png);
+                width: 40px;
+                height: 40px;
+                background-repeat: no-repeat;
+                -webkit-transition:all 1s ease;
+                -moz-transition:all 1s ease;
+                -o-transition:all 1s ease;
+                transition:all 1s ease;
+                cursor:pointer;
+            }
+
+            .play:hover { 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/plon.png);
+                background-repeat: no-repeat;
+            }
+
+            .app { 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/app.png);
+                width: 40px;
+                height: 40px;
+                background-repeat: no-repeat;
+                -webkit-transition:all 0.5s ease;
+                -moz-transition:all 0.5s ease;
+                -o-transition:all 0.5s ease;
+                transition:all 0.5s ease;
+                cursor:pointer;
+            }
+
+            .app:hover { 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/appon.png);
+                background-repeat: no-repeat;
+            }
+
+            .twitter{ 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/tw.png);
+                width: 40px;
+                height: 40px;
+                background-repeat: no-repeat;
+                -webkit-transition:all 1s ease;
+                -moz-transition:all 1s ease;
+                -o-transition:all 1s ease;
+                transition:all 1s ease;
+                cursor:pointer;
+            }
+
+            .twitter:hover { 
+                background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/twon.png);
+                background-repeat: no-repeat;
+            }
+
+
+/*PAGINA PRINCIPAL*/
+#mainprincipal{
+    position:absolute;
+    width:82%;
+    height: 100%;
+    min-width: 779px;
+    top: 0px;
+    margin-left: 177px;
+}
+
+    #bannerprincipal { 
+        position:relative;
+        width: 100%;
+        height: 60%;
+        margin: 0 auto;
+    }
+
+        #bannerprincipal img{ 
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -o-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out;
+        }
+
+        @keyframes cambioimagen {
+            0% {
+                opacity:1;
+            }
+            45% {
+                opacity:1;
+            }
+            55% {
+                opacity:0;
+            }
+            100% {
+                opacity:0;
+            }
+        }
+
+        #bannerprincipal img.top {
+            animation-name: cambioimagen;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 10s;
+            animation-direction: alternate;
+        }
+
+    #bannersecundarios {
+        position: relative;
+        width: 100%;
+        height: 40%;
+        margin: 0 auto;
+    }
+
+        .banner1 { 
+            position:relative;
+            float:left;
+            width: 33.33%;
+            height: 85%;
+            text-align:center;
+            color:#FFF;
+            font-family:'Oswald', sans-serif;
+            font-size: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0, 1);
+            background-image: url(https://ebriostatic.s3.amazonaws.com/media/producto/banner1.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-transition:all 0.8s ease;
+            -moz-transition:all 0.8s ease;
+            -o-transition:all 0.8s ease;
+            transition:all 0.8s ease;
+        }
+
+            .banner1:hover {
+                cursor: pointer;
+                font-size: 40px;
+            }
+
+         .banner2 { 
+            position:relative;
+            float:left;
+            width: 33.33%;
+            height: 85%;
+            text-align:center;
+            color:#FFF;
+            font-family:'Oswald', sans-serif;
+            font-size: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0, 1);
+            background-image: url(https://ebriostatic.s3.amazonaws.com/media/producto/banner2.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-transition:all 0.8s ease;
+            -moz-transition:all 0.8s ease;
+            -o-transition:all 0.8s ease;
+            transition:all 0.8s ease;
+        }
+
+            .banner2:hover {
+                cursor: pointer;
+                font-size: 35px;
+            }
+
+        .banner3 { 
+            position:relative;
+            float:left;
+            width: 33.33%;
+            height: 85%;
+            text-align:center;
+            color:#FFF;
+            font-family:'Oswald', sans-serif;
+            font-size: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0, 1);
+            background-image: url(https://ebriostatic.s3.amazonaws.com/media/producto/banner3.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-transition:all 0.8s ease;
+            -moz-transition:all 0.8s ease;
+            -o-transition:all 0.8s ease;
+            transition:all 0.8s ease;
+        }
+
+            .banner3:hover {
+                cursor: pointer;
+                font-size: 40px;
+            }
+
+        .nombrebanner{
+            margin-top: 30%;
+            cursor:pointer;
+        }
+
+        .overlay {
+            position: relative;
+        }
+
+            .overlay:after {
+                position: absolute;
+                content:"";
+                justify-content: center;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                opacity:0;
+                -webkit-transition:all 1s ease;
+                -moz-transition:all 1s ease;
+                -o-transition:all 1s ease;
+                transition:all 1s ease;
+            }
+
+            .overlay:hover:after  {
+                opacity: .7;
+            }
+
+        .negro:after {
+            background-color: rgba(255,255,255,0.4);
+        }
+
+
+
+
+/*FIRMA*/
+#firma {
+    position: fixed;
+    bottom: 0px;
+    height: 15px;
+    border-top:double;
+    border-top-color:#F60;
+    background:rgba(0,0,0,0.8);
+    font-family:'oswald', Helvetica, sans-serif;
+    font-size:11px;
+    color:#FFF;
+    text-align:center;
+    width: 100%;
+    z-index: 11;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+/*SALUDO*/
+#loguser { 
+    position: fixed;
+    z-index: 20;
+    top: 0px;
+    right: 0px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    color:#FFF;
+}
+
+.loguser { 
+    padding: 15px;   
+    background: rgba(255,183,0,1);
+    background: -moz-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,183,0,1)), color-stop(100%, rgba(255,111,0,1)));
+    background: -webkit-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,183,0,1) 0%, rgba(255,111,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb700', endColorstr='#ff6f00', GradientType=0 );
+    border-radius: 5px;
+}
+
+#art { 
+    position:relative; 
+    right: -10px; 
+    background-color:#666; 
+    border-radius:5px; 
+    padding:4px; 
+    font-size: 10px; 
+    color:#fff; 
+    border:#333 solid 2px; 
+    text-align:right; 
+    vertical-align:middle;
+}
+
+/*SUBCATEGORIAS*/
+#maincategoria{
+    position:absolute;
+    width:82%;
+    height:100%;
+    min-width: 779px;
+    top: 0px;
+    margin-left: 176px;
+}
+
+    #imagencategoria {
+        position: absolute;
+        width: 100%;
+        height: 45%;
+    }
+
+    #imagencategoria img{
+        width: 100%;
+        height: 100%;
+    }
+
+    #botonvolvercategorias {
+        position: absolute;
+        top: 85%;
+        left: 1%;
+    }
+
+    .botoncategoria { 
+        cursor: pointer;
+        background-color:background: rgba(0,0,0,1);
+        background: -moz-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(61,61,61,0.8)), color-stop(100%, rgba(0,0,0,0.8)));
+        background: -webkit-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+        background: -o-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+        background: -ms-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+        background: linear-gradient(to bottom, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d3d3d', endColorstr='#000000', GradientType=0);
+        font-family: 'Oswald', sans-serif;
+        color: #FFF;
+        font-size: 12px;
+        padding: 4px;
+        width: 200px;
+        border:none;
+    }
+
+    .botoncategoria:hover { 
+        background: rgba(0,0,0,0.8);
+    }
+
+#contcategoria { 
+    position: absolute;
+    top: 45%;
+    left: 0px;
+    border-top:double;
+    border-top-color:#F60;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 48.5%;
+    overflow-y: auto;	
+}
+
+    .categoriaimg {
+        cursor: pointer;
+        position: relative;
+        width: 33.33%;
+        height: 45%;
+        float:left;
+        text-align:center;
+        color:#FFF;
+        font-family:'Oswald', sans-serif;
+        font-size: 25px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+         transition: all 0.5s ease;
+    }
+
+        .categoriaimg:hover { 
+            font-size: 30px;
+        }
+
+        .categoriaimg img { 
+            width:100%;
+            height:100%;
+        }
+
+        .categoriaimg div {
+            position: absolute;
+            top: 40%;
+            left:0;
+            right:0;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+/*PRODUCTO*/
+#mainsubcategoria{
+    position:absolute;
+    width:82%;
+    height:100%;
+    min-width: 779px;
+    top: 0px;
+    margin-left: 177px;
+}
+
+    #imagensubcategoria {
+        position: absolute;
+        width: 100%;
+        height: 45%;
+    }
+
+        #imagensubcategoria img {
+            width: 100%;
+            height: 100%;
+        }
+
+#contsubcategoria { 
+    position: absolute;
+    top: 45%;
+    border-top:double;
+    border-top-color:#F60;
+    background: rgba(0,0,0,0.5);
+     width: 100%;
+    height: 49%;
+}
+
+    #contsubcategoria h1 { 
+        font-family: 'Oswald', sans-serif;
+        text-align: center;
+        font-size:22px;
+        color:#fff;
+        font-weight:400;
+    }
+
+        #contsubcategoria h1 font{ 
+            color: #FF6600;
+        }
+
+        .slide { 
+            position: absolute;
+            top: 17%;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 85%;
+            height: 80%;
+        }
+
+            .producto { 
+                position: relative;
+                float: left;
+                width: 250px;
+                height:190px;
+                margin-left: 20%;
+                font-family: 'Oswald', sans-serif;
+                font-size:14px;
+                color:#FFF;
+            }
+
+                .imagenproducto { 
+                    position:absolute;
+                    width: 140px;
+                    left: -10px;
+                    z-index:3;
+                    height: 210px;
+                    padding-top: 15px;
+                }
+
+                    .imagenproducto img{ 
+                        width:92%;
+                    }
+
+                .productoinfo { 
+                    position:absolute;
+                    width:173px;
+                    height: 210px;
+                    right: 0px;
+                    z-index:2;
+                    color:#FFF;
+                }
+
+                .classbebida { 
+                    background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/productbg.png);
+                    background-size:cover;
+                    background-repeat:no-repeat;
+                }
+
+                .productodetalles { 
+                    margin-top:34px;
+                    color:#FFF;
+                }
+
+                    .titulosproducto { 
+                        color:#FFF;
+                        font-size:12px;
+                    }
+
+                    .dest { 
+                        color:#F60;
+                    }
+
+                    .titulosubproducto { 
+                        color:#FFF;
+                        font-size:12px;
+                    }
+
+                    .destprecio { 
+                        font-size:22px;
+                        color:#F60;
+                        font-weight:600;
+                    }
+
+                    .botscant {
+                        position:absolute; 
+                        top: 152px; 
+                        left:45px;
+                    }
+
+                    .menos {
+                        width:20px;
+                        height:20px;
+                        background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/menos.png);
+                        background-repeat:no-repeat;
+                        background-color:transparent;
+                        background-position:center;
+                        border:0;
+                        cursor: pointer;
+                    }
+
+                    .menos:focus {
+                        outline:0;
+                    }
+
+                    .menos:disabled {
+                        opacity: 0;
+                        cursor: default;
+                    }
+
+                    .cascant {
+                        color: #000;
+                        width: 20px;
+                        text-align:center;
+                        font-weight:bold;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    input[type=number] {
+                        -moz-appearance:textfield;
+                    }
+
+                    .mas {
+                        width:20px;
+                        height:20px;
+                        background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/mas.png);
+                        background-repeat:no-repeat;
+                        background-color:transparent;
+                        border:0;
+                        background-position:center;
+                        cursor: pointer;
+                    }
+
+                    .mas:focus {
+                        outline:0;
+                    }
+
+                    .botonanadir { 
+                        position:absolute;
+                        right: 42px;
+                        top: 190px;
+                        z-index: 4;
+                        cursor:pointer;
+                    }
+
+                    .botonanadir:visited { 
+                        background-color: #F90;
+                    }
+                    .botonanadir:hover { 
+                        background-color:#F90;
+                    }
+                    .botonanadir:disabled { 
+                        background-color:#666;
+                    }
+
+                    .botoncarrito { 
+                        width:90px;
+                        padding: 3px;
+                        color:#FFF;
+                        background-color:#F60;
+                        font-family: 'Oswald', sans-serif;
+                        font-size:16px;
+                        border:solid 1px #FFF;
+                    }
+
+                    .botoncarrito:active { 
+                        background-color:#F90;
+                    }
+
+/*CARRITO*/
+
+#botonvolvercarrito {
+    position: absolute;
+    top: 14%;
+    left: 6%;
+}
+
+.botonvolvercarrito { 
+    cursor: pointer;
+    background-color:background: rgba(0,0,0,1);
+    background: -moz-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(61,61,61,0.8)), color-stop(100%, rgba(0,0,0,0.8)));
+    background: -webkit-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+    background: -o-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+    background: -ms-linear-gradient(top, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+    background: linear-gradient(to bottom, rgba(61,61,61,0.8) 0%, rgba(0,0,0,0.8) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d3d3d', endColorstr='#000000', GradientType=0);
+    font-family: 'Oswald', sans-serif;
+    color: #FFF;
+    font-size: 12px;
+    padding: 4px;
+    width: 200px;
+    border:none;
+}
+#mainproductocheckin{
+    position:absolute;
+    width:82%;
+    height:100%;
+    min-width: 779px;
+    top: 0px;
+    margin-left:177px;
+    background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/bgproductocheck.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+    #contproductocheckin { 
+        position: absolute;
+        top: 20%;
+        left: 0px;
+        border-top:double;
+        border-top-color:#F60;
+        background: rgba(0,0,0,0.8);
+        width: 100%;
+        height: 74%;
+        z-index:2;
+    }
+
+        #contproductocheckin h1 { 
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size:22px;
+            color:#fff;
+            font-weight:400;
+        }
+
+        #contproductocheckin h1 font {
+            color: #FF6600;
+        }
+
+        #titulocheckproductos {
+            position: absolute;
+            font-family: 'Oswald', sans-serif;
+            top: 10%;
+            left: 2%;
+            color:#FFF;
+            font-size: 14px;
+            width: 96%;
+        }
+
+        #titulocheckproductos table {
+            width: 100%;
+        }
+
+        #contproductos { 
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            width: 96%;
+            height: 80%;
+            left: 2%;
+            top: 15%;
+            z-index:15;
+        }
+
+            #listaproductos { 
+                position:absolute;
+                top:0px;
+                left: 0px;
+                width:100%;
+                height: 85%;
+                overflow: auto;
+            }
+
+                .carrovacio {
+                    font-size: 20px;
+                    color: #fff;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 15%;
+                }
+
+                #productolista  { 
+                    font-family: 'Oswald', sans-serif;
+                    font-size:14px;
+                    width: 100%;
+                    color:#fff;
+                    border-collapse: collapse;
+                }
+
+                    #productolista img{
+                        width: 70px;
+                        height: 80px;
+                    }
+
+            #totalproductos {
+                position:absolute;
+                bottom: 0px;
+                width: 100%;
+                height: 13%;
+                font-family: 'Oswald', sans-serif;
+                font-size:14px;
+                color:#FFF;
+            }
+
+                #totalproductos table{
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .casdescuento { 
+                    background: rgba(255,255,255,0.1);
+                    color:#FFF;
+                    border:solid #CCC 1px;
+                    border-radius: 4px;
+                    font-family:'Oswald', sans-serif;
+                    font-size:14px;
+                    width:100%;
+                    text-align:center;
+                    padding: 6px 0 6px 0;
+                }
+
+                .botonguardar { 
+                    width:100%;
+                    padding: 5px;
+                    margin: 3px;
+                    color:#FFF;
+                    text-align: center;
+                    background-color:#F60;
+                    font-family: 'Oswald', sans-serif;
+                    font-size:14px;
+                    border:solid 1px #FFF;
+                    cursor:pointer;
+                }
+
+                    .botonguardar:active { 
+                        background-color:#F90;
+                        cursor:default;
+                    }
+
+                    .botonguardar:visited { 
+                        background-color: #F90;
+                    }
+
+                    .botonguardar:hover { 
+                        background-color:#F90;
+                    }
+
+                    .botonguardar:disabled {
+                        background-color:#666;
+                        cursor: default;
+                    }
+
+                .botonregistro { 
+                    width:220px;
+                    padding: 5px;
+                    margin: 3px;
+                    color:#FFF;
+                    text-align: center;
+                    background-color:#F60;
+                    font-family: 'Oswald', sans-serif;
+                    font-size:14px;
+                    border:solid 1px #FFF;
+                    cursor:pointer;
+                }
+
+                    .botonregistro:active { 
+                        background-color:#F90;
+                        cursor:default;
+                    }
+
+                    .botonregistro:visited { 
+                        background-color: #F90;
+                    }
+
+                    .botonregistro:hover { 
+                        background-color:#F90;
+                    }
+
+                    .botonregistro:disabled {
+                        background-color:#666;
+                        cursor: default;
+                    }
+
+/*CONFIRMACION PEDIDO*/
+#titulocheck2productos { 
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    top: 10%;
+    left: 2%;
+    color:#F60;
+    font-size: 16px;
+    width: 96%;
+    border-bottom:solid #FFF 1px;
+}
+
+#confinfopedido { 
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    color:#FFF;
+    width: 96%;
+    height: 80%;
+    left: 2%;
+    top: 15%;
+    z-index:15;
+    font-size: 16px;
+    overflow: auto;
+}
+
+    #confinfopedido table {
+        width: 100%;
+        height: 100%;
+    }
+
+    .desttitulo { 
+        font-size:22px;
+        color:#F60;
+        font-weight:400;
+        cursor:pointer;
+    }
+
+    .destwhatsapp { 
+        font-size:22px;
+        color:#43d854;
+        font-weight:400;
+        cursor:pointer;
+    }
+
+    .item_confirmacion {
+        padding-top: 25px;
+    }
+
+    .botonconfirmar { 
+        width:20%;
+        padding: 5px;
+        margin: 3px;
+        color:#FFF;
+        background-color:#F60;
+        font-family: 'Oswald', sans-serif;
+        font-size:14px;
+        border:solid 1px #FFF;
+        cursor:pointer;
+    }
+
+        .botonconfirmar:active { 
+            background-color:#F90;
+            cursor:default;
+        }
+
+        .botonconfirmar:visited { 
+            background-color: #F90;
+        }
+
+        .botonconfirmar:hover { 
+            background-color:#F90;
+        }
+
+        .botonconfirmar:disabled {
+            background-color:#666;
+            cursor: default;
+        }
+
+/*PEDIDO ENVIADO*/
+#confpedido { 
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    color:#FFF;
+    width: 96%;
+    height: 20%;
+    left: 2%;
+    top: 10%;
+    z-index:15;
+}
+
+    #confpedido table{ 
+        width: 100%;
+    }
+
+
+/*MEDIA QUERIES*/
+@media (min-width: 950px) {
+    
+    #mainprincipal{
+        margin-left: 17.7%;
+    }
+    #maincategoria{
+        margin-left: 17.7%;
+    }
+    #mainsubcategoria{
+        margin-left: 17.7%;
+    }
+    #mainproductocheckin{
+        margin-left:17.7%;
+    }
+    
+}
+
+@media (min-width: 1366px){
+    
+    .nombrebanner{
+        margin-top: 25%;
+    }
+    
+}
+
+@media (min-width: 1600px){
+    
+    .banner1{
+        font-size: 35px;
+    }
+    .banner1:hover{
+        font-size: 45px;
+    }
+    .banner2{
+        font-size: 35px;
+    }
+    .banner2:hover{
+        font-size: 45px;
+    }
+    .banner3{
+        font-size: 35px;
+    }
+    .banner3:hover{
+        font-size: 45px;
+    }
+    .categoriaimg { 
+        font-size: 30px;
+    }
+    .categoriaimg:hover { 
+        font-size: 40px;
+    }
+    
+}
+
+@media (min-width: 1900px){
+    
+    .banner1{
+        font-size: 40px;
+    }
+    .banner1:hover{
+        font-size: 50px;
+    }
+    .banner2{
+        font-size: 40px;
+    }
+    .banner2:hover{
+        font-size: 50px;
+    }
+    .banner3{
+        font-size: 40px;
+    }
+    .banner3:hover{
+        font-size: 50px;
+    }
+    .nombrebanner{
+        margin-top: 28%;
+    }
+    .categoriaimg { 
+        font-size: 35px;
+    }
+    .categoriaimg:hover { 
+        font-size: 45px;
+    }
+    
+}
+
+
+/*LOGIN Y REGISTRO*/
+.bodylogin {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/bglogin.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-width: 950px;
+}
+
+    #tablelogin { 
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index:2;
+        width:716px;
+        height: 640px;
+        background-image:url(https://ebriostatic.s3.amazonaws.com/media/producto/tablelogin.png);
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+
+        #login {
+            position:relative;
+            margin-left:auto;
+            margin-right: auto;
+            top: 100px;
+            width: 300px;
+            height: 400px;
+            color:#FFF;
+            font-family: 'Oswald', sans-serif;
+            font-size:14px;
+        }
+
+            #login h1 { 
+                font-size:18px;
+                font-family: 'Oswald', sans-serif;
+                color:#FFF;
+            }
+
+            .titulologin h1 {
+                text-align: center;
+            }
+
+            .titulologin font{
+                color: #ff6600;
+            }
+
+            .loginfields { 
+                width:100%;
+                border:none;
+                border-bottom: solid 2px #999999;
+                font-family: 'Oswald', sans-serif;
+                color:#fff;
+                font-size: 12px;
+                background: rgba(80,80,80,0);
+                height: 25px;
+                text-align:center;
+                margin-top:5px;
+            }
+
+            .telefonofield { 
+                width:30%;
+                border:none;
+                border-bottom: solid 2px #999999;
+                font-family: 'Oswald', sans-serif;
+                color:#ff6600;
+                font-size: 20px;
+                background: rgba(80,80,80,0);
+                height: 35px;
+                text-align:center;
+            }
+
+            .logforgot {
+                text-align: left;
+                font-size: 10.5px;
+                color:#666;
+            }
+
+            .logforgot a{
+                text-align: left;
+                font-size: 10.5px;
+                color:#666;
+            }
+
+            .logreg {
+                text-align: right;
+                font-size: 10.5px;
+                color: #F63;
+            }
+
+            .logreg a{
+                text-align: right;
+                font-size: 10.5px;
+                color: #F63;
+            }
+
+            #redeslogin {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align:center;
+                font-family: 'Oswald', sans-serif;
+                font-size:10px;
+                color:#fff;
+                margin-top: 10px;
+            }
+
+            #redeslogin table{
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .ingredes {
+                width: 220px;
+                height: 36px;
+                border: 2px solid #fff;
+                border-radius: 2px;
+            }
+
+            .ingredesregistro {
+                width: 220px;
+                height: 36px;
+                border: 2px solid #fff;
+                border-radius: 2px;
+            }
+
+            .linkrestpassword {
+                color: #fff;
+            }
+
+            .linkrestpassword:visited {
+                color: #fff;
+            }
+
+/*REGISTRO*/
+#registro {
+    position:relative;
+    margin-left:auto;
+    margin-right: auto;
+    top: 50px;
+    width: 300px;
+    height: 400px;
+    color:#FFF;
+    font-family: 'Oswald', sans-serif;
+    font-size:14px;
+}
+
+    .imgregistro {
+        width: 90%;
+    }
+
+    #registro h1 { 
+        font-size:18px;
+        font-family: 'Oswald', sans-serif;
+        color:#FFF;
+    }
+
+    .aviso_obligatorio {
+        font-size:11px;
+        color:#f60;
+    }
+
+    .registrodirfieldsselect{
+        cursor: pointer;
+        border:none;
+        font-family: 'Oswald', sans-serif;
+        color:#999;
+        margin:3px;
+        background: rgba(80,80,80,0.7);
+        height: 25px;
+        text-align:center;
+        margin-top:5px;
+    }
+
+    .diruno {
+        width: 105px;
+    }
+
+    .dirdos {
+        width: 56px;
+    }
+
+    .fecha {
+        width: 70px;
+    }
+
+    .registrodirfieldsselect option{
+        background: rgba(0,0,0,0.8);
+    }
+
+    .registrodirfields { 
+        width:60px;
+        border:none;
+        border-bottom: solid 2px #999999;
+        font-family: 'Oswald', sans-serif;
+        color:#999;
+        background: rgba(80,80,80,0);
+        height: 25px;
+        text-align:center;
+        margin-top:5px;
+    }
+
+    .espaciodir { 
+        padding-top:40px;
+        color:#F60;
+        font-size:12px;
+        padding-bottom:5px;
+    }
+
+    .regreg { 
+        font-size: 12px;
+        color: #F60;
+    }
+
+/*INDEX*/
+.bodyport { 
+    position:relative;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://ebriostatic.s3.amazonaws.com/media/producto/bgport.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    #portada { 
+        position:relative;
+        margin-left:auto;
+        margin-right: auto;
+        top: 60px;
+        width: 300px;
+        height: 400px;
+        color:#FFF;
+        font-family: 'Oswald', sans-serif;
+        font-size:14px;
+    }
+
+        #portada h1 { 
+            text-align: center;
+            font-size:12px;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-style: italic;
+            color:#FFF;
+        }
+
+    .edadport{ 
+        padding-top: 20px;
+    }
+
+    .wrapbotonesindex {
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .wrapbotonesindex a{
+       text-decoration: none; 
+    }
+
+        .botonindex { 
+                margin: 3px;
+                color:#FFF;
+                background-color:#F60;
+                font-family: 'Oswald', sans-serif;
+                border:solid 1px #FFF;
+                cursor:pointer;
+            }
+
+                .botonindex:active { 
+                    background-color:#F90;
+                    cursor:default;
+                }
+
+                .botonindex:visited { 
+                    background-color: #F90;
+                }
+
+                .botonindex:hover { 
+                    background-color:#F90;
+                }
+
+                .botonindex:disabled {
+                    background-color:#666;
+                    cursor: default;
+                }
+
+                .ingreso {
+                    width: 160px;
+                    padding: 5px;
+                    font-size:14px;
+                }
+
+                .secundario {
+                    width: 120px;
+                    padding: 5px;
+                    font-size:11px;
+                }
+
+/*POP UP DIRECCION*/
+.modalmask {
+	position: fixed;
+    display: flex;
+    justify-content: center;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.9);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalmask.abrir {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalbox{
+	width: 430px;
+	padding: 5px 20px 13px 20px;
+	border-radius:3px;
+	-webkit-transition: all 500ms ease-in;
+	-moz-transition: all 500ms ease-in;
+	transition: all 500ms ease-in;
+}
+
+.movedown {
+	margin: 0 auto;
+}
+
+.modalmask.abrir .movedown{		
+	margin: 10% auto;
+}
+
+#direccionpop { 
+    position: relative;
+    font-family: 'Oswald', sans-serif;
+    font-size:12px;
+    float:left;
+    width: 450px;
+    border: solid 2px;
+    border-color: #FFF;
+    height: 270px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+ #popencabezado { 
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 100%;
+    background-color:#F60;
+    color:#FFF;
+    text-align:center;
+    border: solid 2px #fff;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#titulopopdireccion {
+    position: absolute;
+    top: 38px;
+    left: 15px;
+    color:#FFF;
+    font-size: 15px;
+}
+
+#direccion {
+    width: 100%;
+    position:absolute;
+    top: 60px;
+    color: #fff;
+}
+
+#direccion table{
+    width: 100%;
+}
+
+.wrap_complemento_direccion{
+    position: absolute;
+    top: 120px;
+    width: 100%;
+}
+
+#complemento_direccion { 
+    padding: 4px;
+    border: solid 1px #FFF;
+    border-radius: 5px;
+    font-family:'Oswald', sanserif;
+    background-color: rgba(88,88,88,0.8);
+    color:#FFF;
+    width: 90%;
+    height: 20px;
+    font-size:13px;
+    margin-left: 5%;
+}
+
+.vista_direccion {
+    position: absolute;
+    top: 160px;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    text-align: center;
+    color: #F60;
+    font-size: 17px;
+}
+
+.vista_complemento {
+    position: absolute;
+    top: 190px;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    text-align: center;
+    color: #F60;
+    font-size: 17px;
+}
+
+#reportevolver { 
+    position:absolute;
+    width: 100%;
+    top: 220px;
+    text-align:center;
+}
+
+.check_dir {
+    cursor: pointer;
+}
+
+.botondireccion { 
+    width:70%;
+    padding: 5px;
+    margin: 3px;
+    color:#FFF;
+    text-align: center;
+    background-color:#F60;
+    font-family: 'Oswald', sans-serif;
+    font-size:14px;
+    border:solid 1px #FFF;
+    cursor:pointer;
+}
+
+.botondireccion:active { 
+    background-color:#F90;
+    cursor:default;
+}
+
+.botondireccion:visited { 
+    background-color: #F90;
+}
+
+.botondireccion:hover { 
+    background-color:#F90;
+}
+
+.botondireccion:disabled {
+    background-color:#666;
+    cursor: default;
+}
+
+#ordencajaproductosreportar { 
+    padding: 4px;
+    border: solid 1px #FFF;
+    border-radius: 5px;
+    font-family:'Oswald', sanserif;
+    background-color: rgba(88,88,88,0.8);
+    color:#FFF;
+    width: 390px;
+    height: 90px;
+    font-size:13px;					  
+}
+
+.cuponActivo {
+    background-color: #666;
+}
+
+/*POP UP BUZON DE SUGERENCIAS*/
+.fila_buzon {
+    margin-left: 15px;
+}
+
+.registrobuzonfieldsselect{
+    width: 150px;
+    cursor: pointer;
+    border:none;
+    font-family: 'Oswald', sans-serif;
+    color:#999;
+    margin:3px;
+    background: rgba(80,80,80,0.7);
+    height: 25px;
+    text-align:center;
+    margin-top:5px;
+    margin-left: 15px;
+}
+
+.texto_buzon { 
+    padding: 4px;
+    border: solid 1px #FFF;
+    border-radius: 5px;
+    font-family:'Oswald', sanserif;
+    background-color: rgba(88,88,88,0.8);
+    color:#FFF;
+    width: 90%;
+    height: 100px;
+    font-size:13px;
+    margin-left: 15px;
+}
+
+.botones_buzon { 
+    position:absolute;
+    display: flex;
+    width: 100%;
+    top: 220px;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.boton_buzon { 
+    width:150px;
+    padding: 5px;
+    margin: 3px;
+    color:#FFF;
+    text-align: center;
+    background-color:#F60;
+    font-family: 'Oswald', sans-serif;
+    font-size:14px;
+    border:solid 1px #FFF;
+    cursor:pointer;
+}
+
+.boton_buzon:active { 
+    background-color:#F90;
+    cursor:default;
+}
+
+.boton_buzon:visited { 
+    background-color: #F90;
+}
+
+.boton_buzon:hover { 
+    background-color:#F90;
+}
+
+.boton_buzon:disabled {
+    background-color:#666;
+    cursor: default;
+}
+
+.condiciones {
+    color: #f60;
+}
+
+.sin-cuenta {
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    color: #f90;
+}

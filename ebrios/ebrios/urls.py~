@@ -1,0 +1,99 @@
+from django.conf import settings
+from django.conf.urls import (handler400, handler403,
+                        handler404, handler500)
+from django.conf.urls import include, url, patterns
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth.views import login, logout
+from productos import views 
+from rest_framework import routers
+from ordenes.views import (OrdenPedidoViewSet, OrdenPutViewSet, ClienteViewSet,
+                            PedidoViewSet, LicoreraOrdenViewSet, OrdenViewSet, 
+                            UserCreateViewSet, ClientePostViewSet, CuponViewSet,
+                            CuponrelacionViewSet, RechazoViewSet, OrdenrechazadaPutViewSet,
+                            CuponrelacionputViewSet)
+from productos.views import (ProductoPutViewSet, ProductoViewSet, MarcaViewSet, MarcaPostViewSet,
+                            ProductoPostViewSet, CategoriaViewSet,
+                            TamanoViewSet, SubcategoriaViewSet,
+                            ProductoDisponiblePutViewSet, ProductoGetViewSet)
+from licoreras.views import LicoreraViewSet, UserViewSet, ZonaPutViewSet, ZonaViewSet
+
+handler400 = 'customauth.views.bad_request'
+handler403 = 'customauth.views.permission_denied'
+handler404 = 'customauth.views.page_not_found'
+handler500 = 'customauth.views.server_error'
+router = routers.DefaultRouter()
+
+router.register(r'licoreras', LicoreraViewSet, 'licoreras')
+router.register(r'zonas', ZonaViewSet, 'zonas')
+router.register(r'cambiarestadozona', ZonaPutViewSet, 'cambiarestadozona')
+router.register(r'registrarusuario', UserCreateViewSet, 'registrarusuario')
+router.register(r'clientes', ClienteViewSet, 'clientes')
+router.register(r'registrarcliente', ClientePostViewSet, 'registrarcliente')
+router.register(r'productos', ProductoViewSet, 'productos')
+router.register(r'productoslicorera', ProductoGetViewSet, 'productoslicorera')
+router.register(r'agregarproducto', ProductoPostViewSet, 'agregarproducto')
+router.register(r'categorias', CategoriaViewSet, 'categorias')
+router.register(r'subcategorias', SubcategoriaViewSet, 'subcategorias')
+router.register(r'marcas', MarcaViewSet, 'marcas')
+router.register(r'cambiarestadoproducto', ProductoDisponiblePutViewSet, 'cambiarestadoproducto')
+router.register(r'borrarproducto', ProductoPutViewSet, 'borrarproducto')
+router.register(r'ordenes', OrdenViewSet, 'ordenes')
+router.register(r'actualizarorden', OrdenPutViewSet, 'actualizarorden')
+router.register(r'tamano', TamanoViewSet, 'tamano')
+router.register(r'cupon', CuponViewSet, 'cupon')
+router.register(r'aplicardescuento', CuponrelacionViewSet, 'aplicardescuento')
+router.register(r'cambiarestadodescuento', CuponrelacionputViewSet, 'cambiarestadodescuento')
+router.register(r'rechazos', RechazoViewSet, 'rechazos')
+router.register(r'ordenrechazada', OrdenrechazadaPutViewSet, 'ordenrechazada')
+
+
+urlpatterns = [
+	url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^ebrios/ceo/admin', include(admin.site.urls)),
+    url(r'^$', 'ordenes.views.home', name='home'),
+    url(r'^productos/', views.producto_view, name='producto_view'),
+    url(r'^acceder/', 'ordenes.views.login_success', name='login_success'),
+    url(r'^pedidos/', 'ordenes.views.pedidos', name='pedidos'),
+    url(r'^compras/', 'ordenes.views.compras', name='compras'),
+    url(r'^registro/', 'ordenes.views.registro', name='registro'),
+    url(r'^ingreso/', 'ordenes.views.ingreso', name='ingreso'),
+    url(r'^terminosycondiciones/', 'ordenes.views.terminosycondiciones', name='terminosycondiciones'),
+    url(r'^obtenerclienteautenticado/', 'ordenes.views.obtenerclienteautenticado',
+            name='obtenerclienteautenticado'),
+    url(r'^obtenerlicoreraautenticada/', 'ordenes.views.obtenerlicoreraautenticada',
+            name='obtenerlicoreraautenticada'),
+    url(r'^registrarorden/', 'ordenes.views.registrarorden', name='registrarorden'),
+    url(r'^alert', 'ordenes.views.alert', name='alert'),
+    url(r'^datetime', 'ordenes.views.get_datetime', name='datetime'),    
+    url(r'^enviarcorreo', 'ordenes.views.enviar_correo', name='enviarcorreo'),
+    url(r'^buzondesugerencias', 'ordenes.views.buzon', name='buzon'),
+    url(r'^accounts/login/$', login),   
+    url(r'^accounts/logout/$', logout, {'next_page': '/'}),
+    url(r'^api/', include(router.urls)),    
+    #Comentar para desarrollo
+    url(r'^bouncy/', include('django_bouncy.urls')),
+
+    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #URLS DE RECUPERACION DE CONTRASENA
+    url(r'^reset/password_reset/$', 'django.contrib.auth.views.password_reset',
+        {'template_name': 'password/password_reset.html'},        
+        name='reset_password_reset1'),
+    url(r'^reset/password_reset/done/$',
+        'django.contrib.auth.views.password_reset_done',
+        {'template_name': 'password/password_reset_done.html'},  
+        name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', 
+        'django.contrib.auth.views.password_reset_confirm',
+        {'template_name': 'password/password_reset_confirm.html'}, 
+        name='password_reset_confirm'),
+    url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete',
+    {'template_name': 'password/password_reset_complete.html'}, 
+        name='password_reset_complete'),
+    #URL SOCIAL-AUTH
+    url('', include('social.apps.django_app.urls', namespace='social')),
+]
+
+if settings.DEBUG:
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

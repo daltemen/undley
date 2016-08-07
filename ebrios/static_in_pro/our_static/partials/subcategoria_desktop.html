@@ -1,0 +1,64 @@
+<div ng-controller="ProductosController">
+
+    <div id="mainsubcategoria">
+
+        <div id="imagensubcategoria">
+            <img src="https://ebriostatic.s3.amazonaws.com/media/producto/big{{subcategoria.nombre|lowercase}}.jpg">
+            <div id="botonvolvercategorias">
+                <input type="button" value="<-- VOLVER A {{categoria_seleccionada.categoria | uppercase}}" class="botoncategoria" ng-click="go('/categoria/'+categoria_seleccionada.categoria)">
+            </div>
+        </div>
+
+        <div id="contsubcategoria">
+            <H1><font>------------------</font>&nbsp;&nbsp;NUESTROS PRODUCTOS &nbsp;&nbsp;<font>------------------</font></H1>
+            <div class="slide">
+                <slick  settings="slickConfig" ng-if="cargar_contenido.valor">                  
+                    <div  ng-repeat="producto in productos.items|filter:{subcategoria: subcategoria.nombre}|orderBy:'precio'">
+                        <div class="producto">
+                            <div class="imagenproducto"><img ng-src="{{producto.imagen}}"></div>
+                            <div class=" productoinfo classbebida">
+                                <div class="productodetalles">
+                                    <table align="center"> 
+                                        <tr>
+                                            <td colspan="2" align="center" class="titulosproducto">{{producto.marca|uppercase}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" class="titulosproducto" height="40px">Tamaño</td>
+                                            <td align="left" class="dest">{{producto.tamano}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="center" class="titulosubproducto" height="10px">Precio<br />
+                                                <span class="destprecio">$ {{producto.precio}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="center">
+                                                <div class="botscant">
+                                                    <table>
+                                                        <tr>
+                                                            <td style="middle">
+                                                                <input type="button" class="menos" ng-click="cantidad_producto = cantidad_producto-1" ng-disabled="cantidad_producto<=1">&nbsp;
+                                                            </td>
+                                                            <td style="middle">
+                                                                <input class="cascant" type="number" ng-model="cantidad_producto" disabled>&nbsp;
+                                                            </td>
+                                                            <td style="middle">
+                                                                <input type="button" class="mas" ng-click="cantidad_producto = cantidad_producto+1">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>                                    
+                            <button class="botonanadir botoncarrito" type="button"  ng-click="anadirProducto(producto,cantidad_producto);calcularTotalCompra();calcularNumeroProductos();animarCarrito();agregarAlCarritoFacebook(producto.marca,subcategoria.nombre);">AÑADIR</button>
+                        </div>                              
+                    </div>       
+                </slick>
+            </div>              
+        </div>
+
+    </div>
+</div>

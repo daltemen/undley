@@ -1,0 +1,18 @@
+<div ng-controller="CategoriaController">
+    <div id="maincategoria">
+
+        <div id="imagencategoria">
+            <img src="https://ebriostatic.s3.amazonaws.com/media/producto/{{categoria.nombre|lowercase}}.jpg">
+            <div id="botonvolvercategorias">
+                <input type="button" value="<-- VOLVER AL MENU PRINCIPAL" class="botoncategoria" ng-click="go('/')">
+            </div>
+        </div>
+
+        <div id="contcategoria">
+            <div ng-repeat="subcategoria in subcategorias|filter:{categoria: categoria.id}" class="categoriaimg overlay negro" ng-click="go('/categoria/'+categoria.nombre+'/'+subcategoria.nombre);escogerSubcategoria(subcategoria);actualizarCarousel();registrarEventoGa('subcategoria','click subcategoria','click en '+subcategoria.nombre)">
+                <img src="https://ebriostatic.s3.amazonaws.com/media/producto/small{{subcategoria.nombre|lowercase}}.jpg">
+            </div>
+        </div>
+
+    </div>
+</div>
